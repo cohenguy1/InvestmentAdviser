@@ -1,0 +1,195 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="InvestmentAdviser.Site" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <style type="text/css">
+        #content {
+            height: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: auto;
+            margin-top: auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #outer {
+            height: 100%;
+            text-align: center;
+        }
+
+        #inner {
+            display: inline-block;
+        }
+
+        #myProgress {
+            position: relative;
+            margin-left:auto;
+            margin-right:auto;
+            display: inline-block;
+            width: 300px;
+            height: 20px;
+            background-color: #ddd;
+        }
+
+        #myBar {
+            position: absolute;
+            width: 0%;
+            height: 100%;
+            background-color: #0066ff;
+        }
+
+        #label {
+            text-align: center;
+            line-height: 20px;
+            color: white;
+        }
+
+        .rating-star-block .star.outline {
+            background: url("Images/star-empty-lg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+        }
+
+        .rating-star-block .star.filled {
+            background: url("Images/star-fill-lg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+        }
+
+        .rating-star-block .star.selectedFilled {
+            background: url("Images/star-fill-lg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+        }
+
+        .rating-star-block {
+            height: 40px;
+            width: 600px;
+            display: inline-block;
+            text-align: center;
+            margin-left: 30px;
+        }
+
+        .rating-star-block .star {
+            color: rgba(0,0,0,0);
+            display: inline-block;
+            height: 32px;
+            overflow: hidden;
+            text-indent: -999em;
+            width: 32px;
+        }
+
+        .rating-star-block .ratingLabel {
+            display: inline-block;
+            height: 32px;
+            color: black;
+            overflow: hidden;
+            font-size: x-large;
+            margin-left: 10px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        a {
+            color: #005782;
+            text-decoration: none;
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<script src="Scripts/jquery-1.4.1.js"></script>
+<script type="text/javascript" language="javascript">
+
+
+    function disableBackButton() {
+        window.history.forward()
+    }
+    disableBackButton();
+    window.onload = disableBackButton();
+    window.onpageshow = function (evt) { if (evt.persisted) disableBackButton() }
+    window.onunload = function () { void (0) }
+
+    $(document).ready(function () {
+        $("#clientScreenWidth").val($(window).width());
+        $("#clientScreenHeight").val($(window).height());
+
+        $(".rating-star-block").mouseleave(function () {
+            var ratingStarBlock = document.getElementById('rating-star-block');
+            var stars = ratingStarBlock.getElementsByTagName('div');
+
+            for (var i = 0; i < stars.length; i++) {
+                var child = stars[i];
+                child.classList.remove("filled");
+                if (child.classList.contains("selected")) {
+                    child.classList.add("selectedFilled");
+                }
+            }
+        });
+        $(".star").mouseleave(function () {
+            $(this).removeClass("filled");
+            $(this).addClass("outline");
+        });
+        $(".star").mouseenter(function () {
+            var ratingStarBlock = document.getElementById('rating-star-block');
+            var stars = ratingStarBlock.getElementsByTagName('div');
+
+            for (var i = 0; i < stars.length; i++) {
+                var child = stars[i];
+                child.classList.remove("selectedFilled");
+            }
+
+            var hoverVal = $(this).attr('rating');
+            $(this).prevUntil().addClass("filled");
+            $(this).addClass("filled");
+            $("#RAT").html(hoverVal);
+        });
+        $(".rating-star-block .star").click(function () {
+            var ratingStarBlock = document.getElementById('rating-star-block');
+            var stars = ratingStarBlock.getElementsByTagName('div');
+
+            for (var i = 0; i < stars.length; i++) {
+                var child = stars[i];
+                child.classList.remove("selected");
+            }
+
+            $(this).prevUntil().addClass("selected");
+            $(this).addClass("selected");
+
+            currentRating = 0;
+            for (var i = 0; i < stars.length; i++) {
+                var child = stars[i];
+                if (child.id.toString().startsWith("star") && child.classList.contains("selected")) {
+                    currentRating++;
+                }
+            }
+
+            //var ratingLbl = document.getElementById('ratingLbl');
+            //ratingLbl.innerHTML = currentRating.toString() + "/10";
+        });
+    });
+
+    function setNewScore(container, data) {
+        $(container).html(data);
+        $("#myElem").show('1000').delay(2000).queue(function (n) {
+            $(this).hide(); n();
+        });
+    }
+</script>
+
+<body onload=";" onresize="sizeFunction()">
+
+    <form id="form1" runat="server">
+
+        <div id="outer">
+            <div id="inner">
+                <div style="margin-top: 1px;">&nbsp;</div>
+                <h1>Investments Game </h1>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+
+            </div>
+        </div>
+
+    </form>
+</body>
+</html>
