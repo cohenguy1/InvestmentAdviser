@@ -19,9 +19,7 @@ namespace InvestmentAdviser
 
         protected void btnNextInstruction_Click(object sender, EventArgs e)
         {
-            // training start
             InstructionsStopwatch.Stop();
-            dbHandler.UpdateTimesTable(GameState.TrainingStart);
 
             Response.Redirect("Quiz.aspx");
         }

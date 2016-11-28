@@ -159,7 +159,7 @@ namespace InvestmentAdviser
         {
             var turn = GetScenarioTurn(turnIndex);
 
-            return turn.Profit == null ? null : turn.Profit.ToString();
+            return turn.Profit.ToString();
         }
     }
 }

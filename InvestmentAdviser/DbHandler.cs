@@ -277,14 +277,6 @@ namespace InvestmentAdviser
                     return "UserInfo";
                 case GameState.Instructions:
                     return "Instructions";
-                case GameState.TrainingStart:
-                    return "TrainingStart";
-                case GameState.AfterTraining1:
-                    return "AfterTraining1";
-                case GameState.AfterTraining2:
-                    return "AfterTraining2";
-                case GameState.AfterTraining3:
-                    return "AfterTraining3";
                 case GameState.Quiz:
                     return "Quiz";
                 case GameState.GameStart:
@@ -338,9 +330,9 @@ namespace InvestmentAdviser
 
                 using (SQLiteConnection sqlConnection1 = new SQLiteConnection(connectionString))
                 {
-                    using (SQLiteCommand cmd = new SQLiteCommand("INSERT INTO Times (UserId, UserInfo, Instructions, TrainingStart," +
-                        " AfterTraining1, AfterTraining2, AfterTraining3, Quiz, GameStart, BeforeRate, Rate, AfterRate, EndGame, CollectedPrize) VALUES " +
-                        "(@UserId, @UserInfo, @Instructions, @TrainingStart, @AfterTraining1, @AfterTraining2, @AfterTraining3, " +
+                    using (SQLiteCommand cmd = new SQLiteCommand("INSERT INTO Times (UserId, UserInfo, Instructions, " +
+                        " Quiz, GameStart, BeforeRate, Rate, AfterRate, EndGame, CollectedPrize) VALUES " +
+                        "(@UserId, @UserInfo, @Instructions, " +
                         " @Quiz, @GameStart, @BeforeRate, @Rate, @AfterRate, @EndGame, @CollectedPrize)"))
                     {
                         cmd.CommandType = CommandType.Text;
@@ -349,10 +341,6 @@ namespace InvestmentAdviser
                         cmd.Parameters.AddWithValue("@UserId", UserId);
                         cmd.Parameters.AddWithValue("@UserInfo", null);
                         cmd.Parameters.AddWithValue("@Instructions", null);
-                        cmd.Parameters.AddWithValue("@TrainingStart", null);
-                        cmd.Parameters.AddWithValue("@AfterTraining1", null);
-                        cmd.Parameters.AddWithValue("@AfterTraining2", null);
-                        cmd.Parameters.AddWithValue("@AfterTraining3", null);
                         cmd.Parameters.AddWithValue("@Quiz", null);
                         cmd.Parameters.AddWithValue("@GameStart", null);
                         cmd.Parameters.AddWithValue("@BeforeRate", null);
