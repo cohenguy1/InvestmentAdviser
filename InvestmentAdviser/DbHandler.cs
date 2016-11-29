@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SQLite;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Web;
 
 namespace InvestmentAdviser
@@ -367,6 +368,44 @@ namespace InvestmentAdviser
             }
 
             GameStateStopwatch.Restart();
+        }
+
+        public double[] GetScenarioTurns()
+        {
+            var connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
+
+            double[] earnings = new double[Common.NumOfTurns];
+
+            using (SQLiteConnection sqlConnection1 = new SQLiteConnection(connectionString))
+            {
+                var command = new StringBuilder();
+                command.Append("Select Turn1");
+                for (int i = 2; i <= Common.NumOfTurns; i++)
+                {
+                    command.Append(", Turn" + i);
+                }
+                command.Append(" from Vectors Where VectorNum=" + VectorNum);
+
+                using (SQLiteCommand cmd = new SQLiteCommand(command.ToString()))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Connection = sqlConnection1;
+                    sqlConnection1.Open();
+
+                    using (SQLiteDataReader result = (SQLiteDataReader)cmd.ExecuteReader())
+                    {
+                        while (result.Read())
+                        {
+                            for (int i = 0; i < Common.NumOfTurns; i++)
+                            {
+                                earnings[i] = result.GetDouble(i);
+                            }
+                        };
+                    }
+                }
+            }
+
+            return earnings;
         }
     }
 }

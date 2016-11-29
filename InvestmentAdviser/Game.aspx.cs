@@ -24,12 +24,24 @@ namespace InvestmentAdviser
 
                 ClearTurnTable();
 
+                FillScenarioTurns();
+
                 ImageInterview.Visible = true;
                 LabelInterviewing.Visible = true;
 
                 CurrentTurnNumber = 1;
 
                 StartInterviewsForPosition(0);
+            }
+        }
+
+        private void FillScenarioTurns()
+        {
+            var earnings = dbHandler.GetScenarioTurns();
+
+            for (int i = 0; i < Common.NumOfTurns; i++)
+            {
+                ScenarioTurns[i].SetEarningPercentage(earnings[i]);
             }
         }
 
@@ -136,8 +148,7 @@ namespace InvestmentAdviser
                 TimerGame.Enabled = true;
             }
 
-            Random r = new Random();
-            GetCurrentTurn().SetProfit(r.Next(100));
+            GetCurrentTurn().SetPlayed();
 
             UpdatePositionToAcceptedCandidate();
             TurnSummary();

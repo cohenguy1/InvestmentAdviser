@@ -28,10 +28,15 @@ namespace InvestmentAdviser.Logic
             return "Turn " + TurnNumber;
         }
 
-        public void SetProfit(int profit)
+        public void SetEarningPercentage(double earningPercentage)
         {
-            EarningPercentage = profit;
+            EarningPercentage = earningPercentage;
             PrizePoints = 3;
+            
+        }
+
+        public void SetPlayed()
+        {
             Played = true;
         }
     }
