@@ -31,7 +31,7 @@ namespace InvestmentAdviser
 
         public static bool ShouldAsk(int stoppingDecision, ScenarioTurn currentTurn)
         {
-            return currentTurn.Profit <= minimalRankForAsk[stoppingDecision + 1];
+            return currentTurn.EarningPercentage <= minimalRankForAsk[stoppingDecision + 1];
         }
     }
 }

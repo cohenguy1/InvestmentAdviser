@@ -158,8 +158,8 @@ namespace InvestmentAdviser
             SummaryNextLbl.Visible = true;
             btnNextTurn.Visible = true;
 
-            TurnSummaryLbl2.Text = GetCurrentTurn().Gain.ToString();
-            PrizePointsLbl2.Text = (110 - 1 * 10).ToString();
+            TurnSummaryLbl2.Text = GetCurrentTurn().EarningPercentage.ToString("0.00");
+            PrizePointsLbl2.Text = GetCurrentTurn().PrizePoints.ToString();
             SummaryNextLbl.Text = "<br /><br />Press 'Next' to proceed to the next turn.<br />";
         }
 

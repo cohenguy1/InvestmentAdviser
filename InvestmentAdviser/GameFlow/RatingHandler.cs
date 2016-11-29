@@ -135,16 +135,16 @@ namespace InvestmentAdviser
                     cmd.Connection = sqlConnection1;
                     cmd.Parameters.AddWithValue("@UserId", UserId);
                     cmd.Parameters.AddWithValue("@AdviserRating", adviserRating.ToString());
-                    cmd.Parameters.AddWithValue("@Position1Rank", GetTurnProfitToInsertToDb(1));
-                    cmd.Parameters.AddWithValue("@Position2Rank", GetTurnProfitToInsertToDb(2));
-                    cmd.Parameters.AddWithValue("@Position3Rank", GetTurnProfitToInsertToDb(3));
-                    cmd.Parameters.AddWithValue("@Position4Rank", GetTurnProfitToInsertToDb(4));
-                    cmd.Parameters.AddWithValue("@Position5Rank", GetTurnProfitToInsertToDb(5));
-                    cmd.Parameters.AddWithValue("@Position6Rank", GetTurnProfitToInsertToDb(6));
-                    cmd.Parameters.AddWithValue("@Position7Rank", GetTurnProfitToInsertToDb(7));
-                    cmd.Parameters.AddWithValue("@Position8Rank", GetTurnProfitToInsertToDb(8));
-                    cmd.Parameters.AddWithValue("@Position9Rank", GetTurnProfitToInsertToDb(9));
-                    cmd.Parameters.AddWithValue("@Position10Rank", GetTurnProfitToInsertToDb(10));
+                    cmd.Parameters.AddWithValue("@Position1Rank", GetTurnEarningToInsertToDb(1));
+                    cmd.Parameters.AddWithValue("@Position2Rank", GetTurnEarningToInsertToDb(2));
+                    cmd.Parameters.AddWithValue("@Position3Rank", GetTurnEarningToInsertToDb(3));
+                    cmd.Parameters.AddWithValue("@Position4Rank", GetTurnEarningToInsertToDb(4));
+                    cmd.Parameters.AddWithValue("@Position5Rank", GetTurnEarningToInsertToDb(5));
+                    cmd.Parameters.AddWithValue("@Position6Rank", GetTurnEarningToInsertToDb(6));
+                    cmd.Parameters.AddWithValue("@Position7Rank", GetTurnEarningToInsertToDb(7));
+                    cmd.Parameters.AddWithValue("@Position8Rank", GetTurnEarningToInsertToDb(8));
+                    cmd.Parameters.AddWithValue("@Position9Rank", GetTurnEarningToInsertToDb(9));
+                    cmd.Parameters.AddWithValue("@Position10Rank", GetTurnEarningToInsertToDb(10));
                     cmd.Parameters.AddWithValue("@TotalPrizePoints", Common.GetTotalPrizePoints(ScenarioTurns));
                     cmd.Parameters.AddWithValue("@InstructionsTime", Math.Round(InstructionsStopwatch.Elapsed.TotalMinutes, 2));
                     cmd.Parameters.AddWithValue("@AskPosition", AskPosition.ToString());
@@ -155,11 +155,11 @@ namespace InvestmentAdviser
             }
         }
 
-        private string GetTurnProfitToInsertToDb(int turnIndex)
+        private string GetTurnEarningToInsertToDb(int turnIndex)
         {
             var turn = GetScenarioTurn(turnIndex);
 
-            return turn.Profit.ToString();
+            return turn.EarningPercentage.ToString("0.00");
         }
     }
 }

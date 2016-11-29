@@ -70,10 +70,10 @@ namespace InvestmentAdviser
         private void UpdateTurnRow(ScenarioTurn currentTurn, int turnRow)
         {
             var positionPrizeCell = GetPrizePointsCell(turnRow);
-            positionPrizeCell.Text = "&nbsp;" + (110 - currentTurn.Profit * 10).ToString();
+            positionPrizeCell.Text = "&nbsp;" + currentTurn.PrizePoints;
 
             var rankCell = GetRankCell(turnRow);
-            rankCell.Text = "&nbsp;" + currentTurn.Profit;
+            rankCell.Text = "&nbsp;" + currentTurn.EarningPercentage.ToString("0.00");
         }
 
         private void ClearTurnTable()

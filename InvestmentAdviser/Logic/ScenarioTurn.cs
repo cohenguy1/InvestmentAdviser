@@ -8,9 +8,9 @@ namespace InvestmentAdviser.Logic
     {
         public ScenarioTurnEnum TurnEnum;
 
-        public double Gain;
+        public int PrizePoints;
 
-        public int Profit { get; private set; }
+        public double EarningPercentage { get; private set; }
 
         public int TurnNumber { get; private set; }
 
@@ -30,7 +30,8 @@ namespace InvestmentAdviser.Logic
 
         public void SetProfit(int profit)
         {
-            Profit = profit;
+            EarningPercentage = profit;
+            PrizePoints = 3;
             Played = true;
         }
     }
