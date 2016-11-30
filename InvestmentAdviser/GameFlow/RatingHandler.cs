@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 using System.Linq;
+using System.Text;
 using System.Web;
 
 namespace InvestmentAdviser
@@ -17,7 +18,7 @@ namespace InvestmentAdviser
                 return false;
             }
 
-            if (CurrentTurnNumber == Common.NumOfTurns)
+            if (CurrentTurnNumber == Common.TotalInvestmentsTurns)
             {
                 return true;
             }
@@ -29,7 +30,7 @@ namespace InvestmentAdviser
 
             if (AskPosition == AskPositionHeuristic.Last)
             {
-                return (CurrentTurnNumber == Common.NumOfTurns);
+                return (CurrentTurnNumber == Common.TotalInvestmentsTurns);
             }
 
             if (AskPosition == AskPositionHeuristic.Random)
@@ -44,40 +45,44 @@ namespace InvestmentAdviser
             
             if (AskPosition == AskPositionHeuristic.MonteCarlo)
             {
-                int[] accepted = new int[10];
+                double[] changes = new double[Common.TotalInvestmentsTurns];
                 var stoppingPosition = -1;
 
-                for (var index = 0; index < ScenarioTurns.Count; index++)
+                for (var turnIndex = 0; turnIndex < Common.TotalInvestmentsTurns; turnIndex++)
                 {
-                    stoppingPosition = CurrentTurnNumber;    
-                }
-
-                // calculated offline whether to stop for stopping position 0 & 1
-                if (stoppingPosition == 0)
-                {
-                    return accepted[0] <= 3;
-                }
-                else if (stoppingPosition == 1)
-                {
-                    if (accepted[0] == 4)
+                    if (ScenarioTurns[turnIndex].Played)
                     {
-                        return accepted[1] <= 3;
+                        changes[turnIndex] = ScenarioTurns[turnIndex].EarningPercentage;
+                        stoppingPosition++;
                     }
-                    else if (accepted[0] == 5)
+                    else
                     {
-                        return accepted[1] <= 2;
+                        break;
                     }
-
-                    // accepted[0] >= 6
-                    return false;
                 }
 
-                bool shouldAsk = ShouldAsk(accepted, stoppingPosition, new Random());
+                var shouldAsk = AskMonteCarlo(changes, stoppingPosition);
 
                 return shouldAsk;
             }
 
             return false;
+        }
+
+        private bool AskMonteCarlo(double[] changes, int stoppingPosition)
+        {
+            if (AlreadyPerformingMonteCarlo)
+            {
+                return false;
+            }
+
+            AlreadyPerformingMonteCarlo = true;
+
+            bool shouldAsk = MonteCarlo.ShouldAsk(changes, stoppingPosition, new Random());
+
+            AlreadyPerformingMonteCarlo = false;
+
+            return shouldAsk;
         }
 
         protected void RateAdvisor()
@@ -124,29 +129,41 @@ namespace InvestmentAdviser
             {
                 sqlConnection1.Open();
 
-                using (SQLiteCommand cmd = new SQLiteCommand("INSERT INTO UserRatings (UserId, AdviserRating, Position1Rank, Position2Rank, " +
-                    "Position3Rank, Position4Rank, Position5Rank, Position6Rank, Position7Rank, Position8Rank, Position9Rank, Position10Rank, TotalPrizePoints, " +
-                    " InstructionsTime, AskPosition, VectorNum, Reason) " +
-                    " VALUES (@UserId, @AdviserRating, @Position1Rank, @Position2Rank, @Position3Rank, @Position4Rank, " +
-                    "@Position5Rank, @Position6Rank, @Position7Rank, @Position8Rank, @Position9Rank, @Position10Rank, @TotalPrizePoints, " +
-                    "@InstructionsTime, @AskPosition, @VectorNum, @Reason)"))
+                StringBuilder command = new StringBuilder();
+                command.Append("INSERT INTO UserRatings (UserId, AdviserRating, ");
+
+                for (int i = 1; i <= Common.TotalInvestmentsTurns; i++)
+                {
+                    command.Append("Turn" + i + ", ");
+                }
+
+                command.Append("TotalPrizePoints, InstructionsTime, AskPosition, VectorNum, Reason) ");
+                command.Append("VALUES (@UserId, @AdviserRating,");
+
+                for (int i = 1; i <= Common.TotalInvestmentsTurns; i++)
+                {
+                    command.Append("@Turn" + i + ", ");
+                }
+
+                command.Append("@TotalPrizePoints, @InstructionsTime, @AskPosition, @VectorNum, @Reason) ");
+
+                using (SQLiteCommand cmd = new SQLiteCommand(command.ToString()))
                 {
                     cmd.CommandType = CommandType.Text;
                     cmd.Connection = sqlConnection1;
                     cmd.Parameters.AddWithValue("@UserId", UserId);
                     cmd.Parameters.AddWithValue("@AdviserRating", adviserRating.ToString());
-                    cmd.Parameters.AddWithValue("@Position1Rank", GetTurnEarningToInsertToDb(1));
-                    cmd.Parameters.AddWithValue("@Position2Rank", GetTurnEarningToInsertToDb(2));
-                    cmd.Parameters.AddWithValue("@Position3Rank", GetTurnEarningToInsertToDb(3));
-                    cmd.Parameters.AddWithValue("@Position4Rank", GetTurnEarningToInsertToDb(4));
-                    cmd.Parameters.AddWithValue("@Position5Rank", GetTurnEarningToInsertToDb(5));
-                    cmd.Parameters.AddWithValue("@Position6Rank", GetTurnEarningToInsertToDb(6));
-                    cmd.Parameters.AddWithValue("@Position7Rank", GetTurnEarningToInsertToDb(7));
-                    cmd.Parameters.AddWithValue("@Position8Rank", GetTurnEarningToInsertToDb(8));
-                    cmd.Parameters.AddWithValue("@Position9Rank", GetTurnEarningToInsertToDb(9));
-                    cmd.Parameters.AddWithValue("@Position10Rank", GetTurnEarningToInsertToDb(10));
+
+                    for (int i = 1; i <= Common.TotalInvestmentsTurns; i++)
+                    {
+                        cmd.Parameters.AddWithValue("@Turn" + i, GetTurnEarningToInsertToDb(i));
+                    }
+
                     cmd.Parameters.AddWithValue("@TotalPrizePoints", Common.GetTotalPrizePoints(ScenarioTurns));
-                    cmd.Parameters.AddWithValue("@InstructionsTime", Math.Round(InstructionsStopwatch.Elapsed.TotalMinutes, 2));
+
+                    var instructionTime = GetInstructionsTime();
+
+                    cmd.Parameters.AddWithValue("@InstructionsTime", instructionTime);
                     cmd.Parameters.AddWithValue("@AskPosition", AskPosition.ToString());
                     cmd.Parameters.AddWithValue("@VectorNum", VectorNum);
                     cmd.Parameters.AddWithValue("@Reason", reasonTxtBox.Text);
@@ -155,9 +172,24 @@ namespace InvestmentAdviser
             }
         }
 
+        private string GetInstructionsTime()
+        {
+            if (InstructionsStopwatch == null)
+            {
+                return string.Empty;
+            }
+
+            return InstructionsStopwatch.Elapsed.TotalMinutes.ToString("0.00");
+        }
+
         private string GetTurnEarningToInsertToDb(int turnIndex)
         {
             var turn = GetScenarioTurn(turnIndex);
+
+            if (!turn.Played)
+            {
+                return string.Empty;
+            }
 
             return turn.EarningPercentage.ToString("0.00");
         }

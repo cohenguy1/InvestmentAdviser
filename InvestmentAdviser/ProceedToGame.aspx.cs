@@ -20,7 +20,6 @@ namespace InvestmentAdviser
 
         protected void btnNextToGame_Click(object sender, EventArgs e)
         {
-            GameMode = GameMode.Advisor;
             Response.Redirect("Game.aspx");
         }
 

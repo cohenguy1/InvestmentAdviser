@@ -60,7 +60,7 @@ namespace InvestmentAdviser
         {
             var scenarioTurns = new List<ScenarioTurn>();
 
-            for (int i = 1; i <= Common.NumOfTurns; i++)
+            for (int i = 1; i <= Common.TotalInvestmentsTurns; i++)
             {
                 scenarioTurns.Add(new ScenarioTurn(i));
             }

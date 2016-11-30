@@ -93,6 +93,9 @@
     <Content Include="Game.aspx" />
     <Content Include="BrowserProblem.aspx" />
     <Content Include="InstructionsPage.aspx" />
+    <Content Include="NasdaqChange.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ProceedToGame.aspx" />
     <Content Include="Quiz.aspx" />
     <Content Include="ResolutionProblem.aspx" />
@@ -158,9 +161,7 @@
     <Compile Include="BrowserProblem.aspx.designer.cs">
       <DependentUpon>BrowserProblem.aspx</DependentUpon>
     </Compile>
-    <Compile Include="GameFlow\MonteCarlo.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
+    <Compile Include="GameFlow\MonteCarlo.cs" />
     <Compile Include="GameFlow\Optimal.cs" />
     <Compile Include="InstructionsPage.aspx.cs">
       <DependentUpon>InstructionsPage.aspx</DependentUpon>

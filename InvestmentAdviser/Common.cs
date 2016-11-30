@@ -7,9 +7,11 @@ namespace InvestmentAdviser
 {
     public static class Common
     {
-        public const int NumOfTurns = 20;
+        public const int TotalInvestmentsTurns = 20;
 
         public const int NumOfTurnsInTable = 10;
+
+        public const int NumOfChanges = 100;
 
         public static int GetTotalPrizePoints(IEnumerable<ScenarioTurn> scenarioTurns)
         {

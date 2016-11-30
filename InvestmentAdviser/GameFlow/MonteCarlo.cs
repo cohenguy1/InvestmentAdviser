@@ -1,78 +1,96 @@
 ﻿using InvestmentAdviser.Logic;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace InvestmentAdviser
 {
-    public partial class Game : System.Web.UI.Page
+    public static class MonteCarlo
     {
+        public static double[] ChangeProbabilitiesArray = new double[Common.NumOfChanges];
+
         public const int NumOfVectors = 1000000;
 
         public const double alpha = 0.45;
 
-        public bool ShouldAsk(int[] accepted, int stoppingDecision, Random random)
+        public static void InitializeChangeProbabilities()
         {
-            if (AlreadyPerformingMonteCarlo)
+            FileStream fs = new FileStream("NasdaqChange.txt", FileMode.Open);
+            StreamReader sr = new StreamReader(fs);
+
+            for (int i = 0; i < Common.NumOfChanges; i++)
             {
-                return false;
+                string line = sr.ReadLine();
+
+                var change = double.Parse(line);
+
+                change = Math.Round(change, 2);
+
+                ChangeProbabilitiesArray[i] = change;
             }
+        }
 
-            AlreadyPerformingMonteCarlo = true;
+        public static bool ShouldAsk(double[] changes, int stoppingDecision, Random random)
+        {
+            double[] exponentialSmoothing = new double[Common.TotalInvestmentsTurns];
+            double[] exponentialSmoothingAccumulated = new double[Common.TotalInvestmentsTurns];
 
-            double[] exponentialSmoothing = new double[10];
-            double[] exponentialSmoothingAccumulated = new double[10];
-
-            for (var positionIndex = 0; positionIndex <= stoppingDecision; positionIndex++)
+            for (var turnsIndex = 0; turnsIndex <= stoppingDecision; turnsIndex++)
             {
-                if (positionIndex == 0)
+                if (turnsIndex == 0)
                 {
-                    exponentialSmoothing[positionIndex] = accepted[0];
+                    exponentialSmoothing[turnsIndex] = changes[0];
                 }
                 else
                 {
-                    exponentialSmoothing[positionIndex] = alpha * accepted[positionIndex] + (1 - alpha) * exponentialSmoothing[positionIndex - 1];
+                    exponentialSmoothing[turnsIndex] = alpha * changes[turnsIndex] + (1 - alpha) * exponentialSmoothing[turnsIndex - 1];
                 }
             }
 
             for (var i = 0; i < NumOfVectors; i++)
             {
-                for (var positionIndex = stoppingDecision + 1; positionIndex < 10; positionIndex++)
+                for (var turnIndex = stoppingDecision + 1; turnIndex < Common.TotalInvestmentsTurns; turnIndex++)
                 {
-                }
+                    var randomChange = GetRandomChange(random);
 
-                for (var positionIndex = stoppingDecision + 1; positionIndex < 10; positionIndex++)
-                {
-                    exponentialSmoothing[positionIndex] = alpha * accepted[positionIndex] + (1 - alpha) * exponentialSmoothing[positionIndex - 1];
-                    exponentialSmoothingAccumulated[positionIndex] += exponentialSmoothing[positionIndex];
+                    // determine the exponential smoothing according to the new randomized turns
+                    exponentialSmoothing[turnIndex] = alpha * randomChange + (1 - alpha) * exponentialSmoothing[turnIndex - 1];
+                    exponentialSmoothingAccumulated[turnIndex] += exponentialSmoothing[turnIndex];
                 }
             }
 
-            for (var positionIndex = 0; positionIndex <= stoppingDecision; positionIndex++)
+            // precalculated smooting (monte carlo doesn't affect this smoothing)
+            for (var turnIndex = 0; turnIndex <= stoppingDecision; turnIndex++)
             {
-                exponentialSmoothingAccumulated[positionIndex] = exponentialSmoothing[positionIndex];
+                exponentialSmoothingAccumulated[turnIndex] = exponentialSmoothing[turnIndex];
             }
 
-            for (var positionIndex = stoppingDecision + 1; positionIndex < 10; positionIndex++)
+            for (var turnIndex = stoppingDecision + 1; turnIndex < Common.TotalInvestmentsTurns; turnIndex++)
             {
-                exponentialSmoothingAccumulated[positionIndex] /= NumOfVectors;
+                exponentialSmoothingAccumulated[turnIndex] /= NumOfVectors;
             }
 
             bool foundBetter = false;
             var currentES = exponentialSmoothingAccumulated[stoppingDecision];
-            for (var positionIndex = stoppingDecision + 1; positionIndex < 10; positionIndex++)
+            for (var turnIndex = stoppingDecision + 1; turnIndex < Common.TotalInvestmentsTurns; turnIndex++)
             {
-                if (exponentialSmoothingAccumulated[positionIndex] < currentES)
+                if (exponentialSmoothingAccumulated[turnIndex] > currentES)
                 {
                     foundBetter = true;
                 }
             }
 
-            AlreadyPerformingMonteCarlo = false;
-
             return !foundBetter;
+        }
+
+        private static double GetRandomChange(Random random)
+        {
+            var changeIndex = random.Next(Common.NumOfChanges);
+
+            return ChangeProbabilitiesArray[changeIndex];
         }
     }
 }

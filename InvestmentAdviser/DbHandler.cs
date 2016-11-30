@@ -32,11 +32,12 @@ namespace InvestmentAdviser
                         return AskPositionHeuristic.Last;
                     case 2:
                         Random rand = new Random();
-                        RandomHuristicAskPosition = rand.Next(10) + 1;
+                        RandomHuristicAskPosition = rand.Next(Common.TotalInvestmentsTurns) + 1;
                         return AskPositionHeuristic.Random;
                     case 3:
                         return AskPositionHeuristic.Optimal;
                     case 4:
+                        MonteCarlo.InitializeChangeProbabilities();
                         return AskPositionHeuristic.MonteCarlo;
                     default:
                         return AskPositionHeuristic.First;
@@ -58,6 +59,7 @@ namespace InvestmentAdviser
             VectorNum = GetFirstVectorSatisfying(AskPositionHeuristic.MonteCarlo);
             if (VectorNum != null)
             {
+                MonteCarlo.InitializeChangeProbabilities();
                 return AskPositionHeuristic.MonteCarlo;
             }
 
@@ -71,7 +73,7 @@ namespace InvestmentAdviser
             if (VectorNum != null)
             {
                 Random ran = new Random();
-                RandomHuristicAskPosition = ran.Next(10) + 1;
+                RandomHuristicAskPosition = ran.Next(Common.TotalInvestmentsTurns) + 1;
                 return AskPositionHeuristic.Random;
             }
 
@@ -374,13 +376,13 @@ namespace InvestmentAdviser
         {
             var connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
 
-            double[] earnings = new double[Common.NumOfTurns];
+            double[] earnings = new double[Common.TotalInvestmentsTurns];
 
             using (SQLiteConnection sqlConnection1 = new SQLiteConnection(connectionString))
             {
                 var command = new StringBuilder();
                 command.Append("Select Turn1");
-                for (int i = 2; i <= Common.NumOfTurns; i++)
+                for (int i = 2; i <= Common.TotalInvestmentsTurns; i++)
                 {
                     command.Append(", Turn" + i);
                 }
@@ -396,7 +398,7 @@ namespace InvestmentAdviser
                     {
                         while (result.Read())
                         {
-                            for (int i = 0; i < Common.NumOfTurns; i++)
+                            for (int i = 0; i < Common.TotalInvestmentsTurns; i++)
                             {
                                 earnings[i] = result.GetDouble(i);
                             }

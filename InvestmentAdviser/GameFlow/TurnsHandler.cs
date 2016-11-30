@@ -18,7 +18,7 @@ namespace InvestmentAdviser
 
         private void UpdateTurnsTable(ScenarioTurn currentTurn, int totalPrizePoints)
         {
-            if (currentTurn.TurnNumber <= Common.NumOfTurns)
+            if (currentTurn.TurnNumber <= Common.TotalInvestmentsTurns)
             {
                 int turnRow = Math.Min(currentTurn.TurnNumber, Common.NumOfTurnsInTable);
 

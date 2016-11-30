@@ -22,6 +22,8 @@ namespace InvestmentAdviser
 
                 MultiView2.ActiveViewIndex = 0;
 
+                GameMode = GameMode.Advisor;
+
                 ClearTurnTable();
 
                 FillScenarioTurns();
@@ -39,7 +41,7 @@ namespace InvestmentAdviser
         {
             var earnings = dbHandler.GetScenarioTurns();
 
-            for (int i = 0; i < Common.NumOfTurns; i++)
+            for (int i = 0; i < Common.TotalInvestmentsTurns; i++)
             {
                 ScenarioTurns[i].SetEarningPercentage(earnings[i]);
             }
@@ -92,7 +94,7 @@ namespace InvestmentAdviser
             {
                 SetTableRowStyle(currentTurnNumber);
             }
-            else if (currentTurnNumber <= Common.NumOfTurns)
+            else if (currentTurnNumber <= Common.TotalInvestmentsTurns)
             {
                 ShiftCells();
 
@@ -200,7 +202,7 @@ namespace InvestmentAdviser
 
             CurrentTurnStatus = TurnStatus.MoveToNextTurn;
 
-            if (CurrentTurnNumber < Common.NumOfTurns)
+            if (CurrentTurnNumber < Common.TotalInvestmentsTurns)
             {
                 FillNextPosition();
             }
