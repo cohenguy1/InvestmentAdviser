@@ -11,6 +11,15 @@ namespace InvestmentAdviser
 {
     public partial class Default : System.Web.UI.Page
     {
+        // TODO what about losing prize points?
+        // TODO quiz
+        // TODO PDF of changes
+        // TODO add images
+        // TODO instructions
+        // TODO enable MonteCarlo and fix issue of NasdaqChange.txt (configuration.xml)
+        // TODO fix proceed to game
+        // TODO another ... row on turns table?
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -81,7 +90,7 @@ namespace InvestmentAdviser
             {
                 AskPosition = dbHandler.GetAskPosition(UserId == "friend");
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 NoHitSlotsAvailable();
             }

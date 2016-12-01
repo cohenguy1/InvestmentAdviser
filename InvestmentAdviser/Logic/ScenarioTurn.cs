@@ -31,8 +31,7 @@ namespace InvestmentAdviser.Logic
         public void SetEarningPercentage(double earningPercentage)
         {
             EarningPercentage = earningPercentage;
-            PrizePoints = 3;
-            
+            PrizePoints = (int)(EarningPercentage * 50);
         }
 
         public void SetPlayed()

@@ -20,7 +20,7 @@ namespace InvestmentAdviser
             if (isFriend)
             {
                 Random ran = new Random();
-                int randomAsk = ran.Next(5);
+                int randomAsk = ran.Next(4);
 
                 VectorNum = ran.Next(50) + 1;
                 

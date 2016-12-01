@@ -16,17 +16,27 @@
                 <td>You have decided to invest in the stock market.</td>
             </tr>
             <tr>
-                <td>In this game you an Investment Adviser wish to gain as much money as possible from these investments.</td>
+                <td>In this game you an Investment Agent wish to gain as much money as possible from these investments.</td>
             </tr>
             <tr>
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td>You have 20 turns, in each turn the adviser invests 100$ on stocks.
-                    <br />
+                <td>You have 20 turns, in each turn the agent invests 100$ on stocks.
                     <br />
                     <br />
                 </td>
+            </tr>
+            <tr>
+                <td>After each turn, you can see the earning percentage of the agent.
+                    <br />
+                    In each turn you get prize points. After each turn, the earning percentage is multiplied by 50, and this amount is added to your prize points.
+                    <br />
+                    Notice that as the agent might lose in the investments, you can lose prize points.
+                    <br />
+                    <br />
+                </td>
+
             </tr>
             <tr>
                 <td>
