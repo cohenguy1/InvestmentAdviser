@@ -8,7 +8,7 @@ namespace InvestmentAdviser
 {
     public partial class EndGame : System.Web.UI.Page
     {
-        public const double PointsPerCent = 25;
+        public const double DollarsPerCent = 10;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,17 +20,16 @@ namespace InvestmentAdviser
 
                 TotalProfitLbl.Text = totalProfit.ToString("");
 
-                BonusLbl.Text = Math.Round(totalProfit / PointsPerCent, 2).ToString("0.0") + " cents";
+                BonusLbl.Text = GetBonus().ToString("") + " cents";
 
                 dbHandler.UpdateTimesTable(GameState.EndGame);
             }
         }
 
-        private double GetBonus()
+        private int GetBonus()
         {
-            var dollars = Common.GetTotalProfit(ScenarioTurns) / PointsPerCent;
-            var cents = dollars / 10;
-            return Math.Round(cents, 2);
+            var cents = Common.GetTotalProfit(ScenarioTurns) / DollarsPerCent;
+            return (int)Math.Round(cents, 0);
         }
 
         protected void rewardBtn_Click(object sender, EventArgs e)
@@ -46,8 +45,7 @@ namespace InvestmentAdviser
             data.Add("workerId", workerId);
             data.Add("hitId", (string)Session["hitId"]);
 
-            double bonusAmount = GetBonus();
-            decimal bonusDecimal = Convert.ToDecimal(bonusAmount);
+            int bonusAmount = GetBonus();
 
             SendFeedback(bonusAmount);
 
@@ -90,7 +88,7 @@ namespace InvestmentAdviser
             dbHandler.SetVectorNextAskPosition(nextAskPosition);
         }
 
-        private void SendFeedback(double bonus)
+        private void SendFeedback(int bonus)
         {
             String connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
             string feedback = feedbackTxtBox.Text;
