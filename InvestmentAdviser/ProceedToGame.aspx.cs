@@ -20,7 +20,7 @@ namespace InvestmentAdviser
 
         protected void btnNextToGame_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Game.aspx");
+            Response.Redirect("Quiz.aspx");
         }
 
     }

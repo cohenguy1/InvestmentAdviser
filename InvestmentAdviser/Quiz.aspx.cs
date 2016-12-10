@@ -41,7 +41,7 @@ namespace InvestmentAdviser
 
             var correct = (rbl1.SelectedIndex == 1) &&
                           (rbl2.SelectedIndex == 2) &&
-                          (rbl3.SelectedIndex == 1);
+                          (rbl3.SelectedIndex == 3);
 
             try
             {
