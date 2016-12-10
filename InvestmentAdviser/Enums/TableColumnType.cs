@@ -8,7 +8,6 @@ namespace InvestmentAdviser.Enums
     public enum TableColumnType
     {
         Turn,
-        Gain,
-        PrizePoints
+        Profit,
     }
 }

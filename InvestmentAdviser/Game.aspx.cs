@@ -39,11 +39,11 @@ namespace InvestmentAdviser
 
         private void FillScenarioTurns()
         {
-            var earnings = dbHandler.GetScenarioTurns();
+            var profits = dbHandler.GetScenariosProfits();
 
             for (int i = 0; i < Common.TotalInvestmentsTurns; i++)
             {
-                ScenarioTurns[i].SetEarningPercentage(earnings[i]);
+                ScenarioTurns[i].SetProfit(profits[i]);
             }
         }
 
@@ -171,8 +171,7 @@ namespace InvestmentAdviser
             SummaryNextLbl.Visible = true;
             btnNextTurn.Visible = true;
 
-            TurnSummaryLbl2.Text = GetCurrentTurn().EarningPercentage.ToString("0.00");
-            PrizePointsLbl2.Text = GetCurrentTurn().PrizePoints.ToString();
+            TurnSummaryLbl2.Text = GetCurrentTurn().Profit.ToString();
             SummaryNextLbl.Text = "<br /><br />Press 'Next' to proceed to the next turn.<br />";
         }
 
@@ -180,8 +179,8 @@ namespace InvestmentAdviser
         {
             var currentTurn = GetCurrentTurn();
 
-            int totalPrizePoints = Common.GetTotalPrizePoints(ScenarioTurns);
-            UpdateTurnsTable(currentTurn, totalPrizePoints);
+            int totalProfit = Common.GetTotalProfit(ScenarioTurns);
+            UpdateTurnsTable(currentTurn, totalProfit);
         }
 
         protected void btnNextTurn_Click(object sender, EventArgs e)

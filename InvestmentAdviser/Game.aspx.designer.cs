@@ -319,22 +319,13 @@ namespace InvestmentAdviser {
         protected global::System.Web.UI.WebControls.TableCell ScenarioTurn1Cell;
         
         /// <summary>
-        /// ScenarioTurn1RankCell control.
+        /// ScenarioTurn1ProfitCell control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn1RankCell;
-        
-        /// <summary>
-        /// ScenarioTurn1PrizeCell control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn1PrizeCell;
+        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn1ProfitCell;
         
         /// <summary>
         /// ScenarioTurn2Cell control.
@@ -346,22 +337,13 @@ namespace InvestmentAdviser {
         protected global::System.Web.UI.WebControls.TableCell ScenarioTurn2Cell;
         
         /// <summary>
-        /// ScenarioTurn2RankCell control.
+        /// ScenarioTurn2ProfitCell control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn2RankCell;
-        
-        /// <summary>
-        /// ScenarioTurn2PrizeCell control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn2PrizeCell;
+        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn2ProfitCell;
         
         /// <summary>
         /// ScenarioTurn3Cell control.
@@ -373,22 +355,13 @@ namespace InvestmentAdviser {
         protected global::System.Web.UI.WebControls.TableCell ScenarioTurn3Cell;
         
         /// <summary>
-        /// ScenarioTurn3RankCell control.
+        /// ScenarioTurn3ProfitCell control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn3RankCell;
-        
-        /// <summary>
-        /// ScenarioTurn3PrizeCell control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn3PrizeCell;
+        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn3ProfitCell;
         
         /// <summary>
         /// ScenarioTurn4Cell control.
@@ -400,22 +373,13 @@ namespace InvestmentAdviser {
         protected global::System.Web.UI.WebControls.TableCell ScenarioTurn4Cell;
         
         /// <summary>
-        /// ScenarioTurn4RankCell control.
+        /// ScenarioTurn4ProfitCell control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn4RankCell;
-        
-        /// <summary>
-        /// ScenarioTurn4PrizeCell control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn4PrizeCell;
+        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn4ProfitCell;
         
         /// <summary>
         /// ScenarioTurn5Cell control.
@@ -427,22 +391,13 @@ namespace InvestmentAdviser {
         protected global::System.Web.UI.WebControls.TableCell ScenarioTurn5Cell;
         
         /// <summary>
-        /// ScenarioTurn5RankCell control.
+        /// ScenarioTurn5ProfitCell control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn5RankCell;
-        
-        /// <summary>
-        /// ScenarioTurn5PrizeCell control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn5PrizeCell;
+        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn5ProfitCell;
         
         /// <summary>
         /// ScenarioTurn6Cell control.
@@ -454,22 +409,13 @@ namespace InvestmentAdviser {
         protected global::System.Web.UI.WebControls.TableCell ScenarioTurn6Cell;
         
         /// <summary>
-        /// ScenarioTurn6RankCell control.
+        /// ScenarioTurn6ProfitCell control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn6RankCell;
-        
-        /// <summary>
-        /// ScenarioTurn6PrizeCell control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn6PrizeCell;
+        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn6ProfitCell;
         
         /// <summary>
         /// ScenarioTurn7Cell control.
@@ -481,22 +427,13 @@ namespace InvestmentAdviser {
         protected global::System.Web.UI.WebControls.TableCell ScenarioTurn7Cell;
         
         /// <summary>
-        /// ScenarioTurn7RankCell control.
+        /// ScenarioTurn7ProfitCell control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn7RankCell;
-        
-        /// <summary>
-        /// ScenarioTurn7PrizeCell control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn7PrizeCell;
+        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn7ProfitCell;
         
         /// <summary>
         /// ScenarioTurn8Cell control.
@@ -508,22 +445,13 @@ namespace InvestmentAdviser {
         protected global::System.Web.UI.WebControls.TableCell ScenarioTurn8Cell;
         
         /// <summary>
-        /// ScenarioTurn8RankCell control.
+        /// ScenarioTurn8ProfitCell control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn8RankCell;
-        
-        /// <summary>
-        /// ScenarioTurn8PrizeCell control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn8PrizeCell;
+        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn8ProfitCell;
         
         /// <summary>
         /// ScenarioTurn9Cell control.
@@ -535,22 +463,13 @@ namespace InvestmentAdviser {
         protected global::System.Web.UI.WebControls.TableCell ScenarioTurn9Cell;
         
         /// <summary>
-        /// ScenarioTurn9RankCell control.
+        /// ScenarioTurn9ProfitCell control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn9RankCell;
-        
-        /// <summary>
-        /// ScenarioTurn9PrizeCell control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn9PrizeCell;
+        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn9ProfitCell;
         
         /// <summary>
         /// ScenarioTurn10Cell control.
@@ -562,30 +481,21 @@ namespace InvestmentAdviser {
         protected global::System.Web.UI.WebControls.TableCell ScenarioTurn10Cell;
         
         /// <summary>
-        /// ScenarioTurn10RankCell control.
+        /// ScenarioTurn10ProfitCell control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn10RankCell;
+        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn10ProfitCell;
         
         /// <summary>
-        /// ScenarioTurn10PrizeCell control.
+        /// TotalProfitCell control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableCell ScenarioTurn10PrizeCell;
-        
-        /// <summary>
-        /// TotalPrizePointsCell control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TableCell TotalPrizePointsCell;
+        protected global::System.Web.UI.WebControls.TableCell TotalProfitCell;
     }
 }

@@ -52,7 +52,7 @@ namespace InvestmentAdviser
                 {
                     if (ScenarioTurns[turnIndex].Played)
                     {
-                        changes[turnIndex] = ScenarioTurns[turnIndex].EarningPercentage;
+                        changes[turnIndex] = ScenarioTurns[turnIndex].Profit;
                         stoppingPosition++;
                     }
                     else
@@ -159,7 +159,7 @@ namespace InvestmentAdviser
                         cmd.Parameters.AddWithValue("@Turn" + i, GetTurnEarningToInsertToDb(i));
                     }
 
-                    cmd.Parameters.AddWithValue("@TotalPrizePoints", Common.GetTotalPrizePoints(ScenarioTurns));
+                    cmd.Parameters.AddWithValue("@TotalPrizePoints", Common.GetTotalProfit(ScenarioTurns));
 
                     var instructionTime = GetInstructionsTime();
 
@@ -191,7 +191,7 @@ namespace InvestmentAdviser
                 return string.Empty;
             }
 
-            return turn.EarningPercentage.ToString("0.00");
+            return turn.Profit.ToString();
         }
     }
 }

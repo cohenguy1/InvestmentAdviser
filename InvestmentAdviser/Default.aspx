@@ -7,43 +7,26 @@
 
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
-    <h2>You will recieve 20 cents for this HIT and it will take about 10 minutes of your time. </h2>
+    <h2>You will receive 20 cents for this HIT and it will take about 10 minutes of your time. </h2>
     <h2>Game Background</h2>
 
     <div style="text-align: center; width: 800px; margin: 0 auto;">
         <table style="text-align: center; max-width: 800px; font-size: large">
             <tr>
-                <td>You have decided to invest in the stock market.</td>
+                <td>In this game our Investment Agent will invest some virtual money on your behalf.</td>
             </tr>
             <tr>
-                <td>In this game you an Investment Agent wish to gain as much money as possible from these investments.</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>You have 20 turns, in each turn the agent invests 100$ on stocks.
+                <td>The agent will make 20 investments, each time investing 100$.
                     <br />
                     <br />
                 </td>
             </tr>
             <tr>
-                <td>After each turn, you can see the earning percentage of the agent.
+                <td>After each investment, you will see the earnings for that investment.
                     <br />
-                    In each turn you get prize points. After each turn, the earning percentage is multiplied by 50, and this amount is added to your prize points.
-                    <br />
-                    Notice that as the agent might lose in the investments, you can lose prize points.
-                    <br />
-                    <br />
+                    Your earnings will influence your bonus in this game - for each 25 virtual dollars earned, you will get a real cent as a bonus.
                 </td>
 
-            </tr>
-            <tr>
-                <td>
-                    <b><span style="font-size: 20px;">You will receive an additional bonus after the game. </span></b>
-                    <br />
-                    <asp:Label ID="backgroundText3" runat="server" Text="Each dollar will win you one prize point. At the end, you will get a cent for each 25 prize points."></asp:Label>
-                </td>
             </tr>
             <tr>
                 <td>&nbsp;</td>

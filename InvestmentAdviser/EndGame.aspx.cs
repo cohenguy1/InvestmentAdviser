@@ -16,7 +16,7 @@ namespace InvestmentAdviser
             {
                 GameStopwatch.Stop();
                 
-                int prizePoints = Common.GetTotalPrizePoints(ScenarioTurns);
+                int prizePoints = Common.GetTotalProfit(ScenarioTurns);
 
                 TotalPrizePointsLbl.Text = prizePoints.ToString("");
 
@@ -28,7 +28,7 @@ namespace InvestmentAdviser
 
         private double GetBonus()
         {
-            var dollars = Common.GetTotalPrizePoints(ScenarioTurns) / PointsPerCent;
+            var dollars = Common.GetTotalProfit(ScenarioTurns) / PointsPerCent;
             var cents = dollars / 100;
             return Math.Round(cents, 2);
         }
@@ -107,7 +107,7 @@ namespace InvestmentAdviser
                         cmd.Parameters.AddWithValue("@UserId", UserId);
                         cmd.Parameters.AddWithValue("@Feedback", feedback);
                         cmd.Parameters.AddWithValue("@TotalTime", Math.Round(GameStopwatch.Elapsed.TotalMinutes, 1));
-                        cmd.Parameters.AddWithValue("@TotalPrizePoints", Common.GetTotalPrizePoints(ScenarioTurns));
+                        cmd.Parameters.AddWithValue("@TotalPrizePoints", Common.GetTotalProfit(ScenarioTurns));
                         cmd.Parameters.AddWithValue("@Bonus", bonus);
                         sqlConnection1.Open();
                         cmd.ExecuteNonQuery();

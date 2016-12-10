@@ -13,13 +13,13 @@ namespace InvestmentAdviser
 
         public const int NumOfChanges = 100;
 
-        public static int GetTotalPrizePoints(IEnumerable<ScenarioTurn> scenarioTurns)
+        public static int GetTotalProfit(IEnumerable<ScenarioTurn> scenarioTurns)
         {
-            int totalPrizePoints = scenarioTurns.Where(turn => turn.Played).
-                Sum(tur => tur.PrizePoints);
+            int totalProfit = scenarioTurns.Where(turn => turn.Played).
+                Sum(tur => tur.Profit);
 
             // with one decimal precision
-            return totalPrizePoints;
+            return totalProfit;
         }
     }
 }

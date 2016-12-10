@@ -79,13 +79,6 @@ namespace InvestmentAdviser
 
         private void DecideRandomStuff()
         {
-            Random rand = new Random();
-            int randHim = rand.Next(2);
-            if (randHim == 1)
-            {
-                backgroundText3.Text = backgroundText3.Text.Replace(" his ", " her ");
-            }
-
             try
             {
                 AskPosition = dbHandler.GetAskPosition(UserId == "friend");

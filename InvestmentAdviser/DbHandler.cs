@@ -372,11 +372,11 @@ namespace InvestmentAdviser
             GameStateStopwatch.Restart();
         }
 
-        public double[] GetScenarioTurns()
+        public int[] GetScenariosProfits()
         {
             var connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
 
-            double[] earnings = new double[Common.TotalInvestmentsTurns];
+            int[] profits = new int[Common.TotalInvestmentsTurns];
 
             using (SQLiteConnection sqlConnection1 = new SQLiteConnection(connectionString))
             {
@@ -400,14 +400,14 @@ namespace InvestmentAdviser
                         {
                             for (int i = 0; i < Common.TotalInvestmentsTurns; i++)
                             {
-                                earnings[i] = result.GetDouble(i);
+                                profits[i] = result.GetInt32(i);
                             }
                         };
                     }
                 }
             }
 
-            return earnings;
+            return profits;
         }
     }
 }

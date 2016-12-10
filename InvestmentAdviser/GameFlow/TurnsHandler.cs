@@ -16,7 +16,7 @@ namespace InvestmentAdviser
             CurrentTurnNumber++;
         }
 
-        private void UpdateTurnsTable(ScenarioTurn currentTurn, int totalPrizePoints)
+        private void UpdateTurnsTable(ScenarioTurn currentTurn, int totalProfit)
         {
             if (currentTurn.TurnNumber <= Common.TotalInvestmentsTurns)
             {
@@ -25,7 +25,7 @@ namespace InvestmentAdviser
                 UpdateTurnRow(currentTurn, turnRow);
             }
 
-            TotalPrizePointsCell.Text = "&nbsp;Total Prize Points: " + totalPrizePoints.ToString();
+            TotalProfitCell.Text = "&nbsp;Total Prize Points: " + totalProfit.ToString();
         }
 
         private void UpdateNewRow(int turnNumber)
@@ -69,11 +69,8 @@ namespace InvestmentAdviser
 
         private void UpdateTurnRow(ScenarioTurn currentTurn, int turnRow)
         {
-            var positionPrizeCell = GetPrizePointsCell(turnRow);
-            positionPrizeCell.Text = "&nbsp;" + currentTurn.PrizePoints;
-
-            var rankCell = GetRankCell(turnRow);
-            rankCell.Text = "&nbsp;" + currentTurn.EarningPercentage.ToString("0.00");
+            var profitCell = GetProfitCell(turnRow);
+            profitCell.Text = "&nbsp;" + currentTurn.Profit;
         }
 
         private void ClearTurnTable()
@@ -83,28 +80,25 @@ namespace InvestmentAdviser
                 ClearTableRowStyle(turnIndex);
             }
 
-            TotalPrizePointsCell.Text = "&nbsp;Total Prize Points: ";
+            TotalProfitCell.Text = "&nbsp;Total Profit: ";
         }
 
         private void ClearTableRowStyle(int turnIndex)
         {
             ClearCellStyle(turnIndex, TableColumnType.Turn);
-            ClearCellStyle(turnIndex, TableColumnType.Gain);
-            ClearCellStyle(turnIndex, TableColumnType.PrizePoints);
+            ClearCellStyle(turnIndex, TableColumnType.Profit);
         }
 
         private void SetSeenTableRowStyle(int turnIndex)
         {
             SetSeenCellStyle(turnIndex, TableColumnType.Turn);
-            SetSeenCellStyle(turnIndex, TableColumnType.Gain);
-            SetSeenCellStyle(turnIndex, TableColumnType.PrizePoints);
+            SetSeenCellStyle(turnIndex, TableColumnType.Profit);
         }
 
         private void SetTableRowStyle(int turnIndex)
         {
             SetTableRowStyle(turnIndex, TableColumnType.Turn);
-            SetTableRowStyle(turnIndex, TableColumnType.Gain);
-            SetTableRowStyle(turnIndex, TableColumnType.PrizePoints);
+            SetTableRowStyle(turnIndex, TableColumnType.Profit);
         }
 
         private void ClearCellStyle(int turnRow, TableColumnType position)
@@ -141,10 +135,8 @@ namespace InvestmentAdviser
             {
                 case TableColumnType.Turn:
                     return GetTurnCell(turnRow);
-                case TableColumnType.Gain:
-                    return GetRankCell(turnRow);
-                case TableColumnType.PrizePoints:
-                    return GetPrizePointsCell(turnRow);
+                case TableColumnType.Profit:
+                    return GetProfitCell(turnRow);
             }
 
             return null;
@@ -195,59 +187,30 @@ namespace InvestmentAdviser
             }
         }
 
-        private TableCell GetPrizePointsCell(int row)
+        private TableCell GetProfitCell(int row)
         {
             switch (row)
             {
                 case 1:
-                    return ScenarioTurn1PrizeCell;
+                    return ScenarioTurn1ProfitCell;
                 case 2:
-                    return ScenarioTurn2PrizeCell;
+                    return ScenarioTurn2ProfitCell;
                 case 3:
-                    return ScenarioTurn3PrizeCell;
+                    return ScenarioTurn3ProfitCell;
                 case 4:
-                    return ScenarioTurn4PrizeCell;
+                    return ScenarioTurn4ProfitCell;
                 case 5:
-                    return ScenarioTurn5PrizeCell;
+                    return ScenarioTurn5ProfitCell;
                 case 6:
-                    return ScenarioTurn6PrizeCell;
+                    return ScenarioTurn6ProfitCell;
                 case 7:
-                    return ScenarioTurn7PrizeCell;
+                    return ScenarioTurn7ProfitCell;
                 case 8:
-                    return ScenarioTurn8PrizeCell;
+                    return ScenarioTurn8ProfitCell;
                 case 9:
-                    return ScenarioTurn9PrizeCell;
+                    return ScenarioTurn9ProfitCell;
                 case 10:
-                    return ScenarioTurn10PrizeCell;
-                default:
-                    return null;
-            }
-        }
-
-        private TableCell GetRankCell(int row)
-        {
-            switch (row)
-            {
-                case 1:
-                    return ScenarioTurn1RankCell;
-                case 2:
-                    return ScenarioTurn2RankCell;
-                case 3:
-                    return ScenarioTurn3RankCell;
-                case 4:
-                    return ScenarioTurn4RankCell;
-                case 5:
-                    return ScenarioTurn5RankCell;
-                case 6:
-                    return ScenarioTurn6RankCell;
-                case 7:
-                    return ScenarioTurn7RankCell;
-                case 8:
-                    return ScenarioTurn8RankCell;
-                case 9:
-                    return ScenarioTurn9RankCell;
-                case 10:
-                    return ScenarioTurn10RankCell;
+                    return ScenarioTurn10ProfitCell;
                 default:
                     return null;
             }
