@@ -8,11 +8,6 @@
         <br />
         <table style="text-align: left; width: 700px;" border="1">
             <tr>
-                <td>
-                    
-                </td>
-            </tr>
-            <tr>
                 <td>Choose the <font color="red"><b>Incorrect</b></font> sentence:
                         <asp:RadioButtonList ID="rbl1" runat="server">
                             <asp:ListItem>Each turn, the agent invests 100$ in several stocks.</asp:ListItem>
@@ -45,7 +40,6 @@
         </table>
     </div>
     <br />
-    <asp:Button ID="btnPrevToInstructions" runat="server" Text="Back To Instructions" OnClick="btnPrevToInstructions_Click" />
     <asp:Button ID="btnNextToProceedToGame" runat="server" Text="Next" OnClick="btnNextToProceedToGame_Click" />
 
 </asp:Content>

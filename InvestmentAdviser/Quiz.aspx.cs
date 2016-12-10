@@ -73,7 +73,7 @@ namespace InvestmentAdviser
 
             if (correct)
             {
-                Response.Redirect("ProceedToGame.aspx");
+                Response.Redirect("Game.aspx");
             }
             else
             {
@@ -108,11 +108,6 @@ namespace InvestmentAdviser
                     cmd.ExecuteNonQuery();
                 }
             }
-        }
-
-        protected void btnPrevToInstructions_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("InstructionsPage.aspx");
         }
     }
 }
