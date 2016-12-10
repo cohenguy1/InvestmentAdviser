@@ -168,7 +168,7 @@ namespace InvestmentAdviser
             SummaryNextLbl.Visible = true;
             btnNextTurn.Visible = true;
 
-            ProfitLbl.Text = GetCurrentTurn().Profit.ToString() + "$";
+            ProfitLbl.Text = GetCurrentTurn().Profit.ToString() + " $";
             SummaryNextLbl.Text = "<br /><br />Press 'Next' to proceed to the next turn.<br />";
         }
 

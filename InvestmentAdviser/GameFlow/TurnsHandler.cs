@@ -25,7 +25,7 @@ namespace InvestmentAdviser
                 UpdateTurnRow(currentTurn, turnRow);
             }
 
-            TotalProfitCell.Text = "&nbsp;Total Profit: " + totalProfit.ToString();
+            TotalProfitCell.Text = "&nbsp;Total Profit: " + totalProfit.ToString() + " $";
         }
 
         private void UpdateNewRow(int turnNumber)
@@ -70,7 +70,7 @@ namespace InvestmentAdviser
         private void UpdateTurnRow(ScenarioTurn currentTurn, int turnRow)
         {
             var profitCell = GetProfitCell(turnRow);
-            profitCell.Text = "&nbsp;" + currentTurn.Profit;
+            profitCell.Text = "&nbsp;" + currentTurn.Profit + " $";
         }
 
         private void ClearTurnTable()

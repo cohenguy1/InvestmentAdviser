@@ -45,7 +45,7 @@
         </asp:View>
         <asp:View ID="ViewRating" runat="server">
 
-            <asp:Label ID="Label2" runat="server" Font-Size="X-Large" Font-Bold="true" Style="margin-left: 20px; align-content: center;">Adviser Rating</asp:Label>
+            <asp:Label ID="Label2" runat="server" Font-Size="X-Large" Font-Bold="true" Style="margin-left: 20px; align-content: center;">Agent Rating</asp:Label>
             <br />
             <asp:Panel ID="Panel3" runat="server" Style="margin-left: 20px; float: right">
                 <br />
@@ -113,8 +113,8 @@
             GridLines="Both"
             runat="server">
             <asp:TableRow Height="35px">
-                <asp:TableCell ID="cell1" Width="60px" HorizontalAlign="Left" Text="&nbsp;Turns" Style="color: blue;" Font-Bold="true"></asp:TableCell>
-                <asp:TableCell ID="cell2" Width="60px" HorizontalAlign="Center" Text="&nbsp;Profit&nbsp;" Style="color: blue;" Font-Bold="true"></asp:TableCell>
+                <asp:TableCell ID="cell1" Width="65px" HorizontalAlign="Left" Text="&nbsp;Turns" Style="color: blue;" Font-Bold="true"></asp:TableCell>
+                <asp:TableCell ID="cell2" Width="65px" HorizontalAlign="Center" Text="&nbsp;Profit&nbsp;" Style="color: blue;" Font-Bold="true"></asp:TableCell>
             </asp:TableRow>
             <asp:TableRow Height="35px">
                 <asp:TableCell ID="ScenarioTurn1Cell" HorizontalAlign="Left" Text="&nbsp;Turn 1"></asp:TableCell>
