@@ -31,8 +31,6 @@ namespace InvestmentAdviser
             var answer2 = rbl2.SelectedIndex;
             var answer3 = rbl3.SelectedIndex;
 
-            Response.Redirect("ProceedToGame.aspx");
-
             if (rbl1.SelectedItem == null || rbl2.SelectedItem == null || rbl3.SelectedItem == null)
             {
                 Alert.Show("You have to answer all the questions!");

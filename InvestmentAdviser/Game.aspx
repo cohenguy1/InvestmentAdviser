@@ -180,6 +180,7 @@
 
             if (savedRank == 0) {
                 alert("Please rate the Investment agent!");
+                document.getElementById('<%=ratingHdnValue.ClientID %>').value = savedRank.toString();
                 return false;
             }
 
