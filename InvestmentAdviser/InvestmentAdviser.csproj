@@ -104,17 +104,6 @@
     <Content Include="WrongQuiz.aspx" />
     <None Include="Properties\PublishProfiles\InvestmentAdviser.pubxml" />
     <None Include="Scripts\jquery-1.4.1-vsdoc.js" />
-    <Content Include="Images\Instructions0.png" />
-    <Content Include="Images\Instructions1.png" />
-    <Content Include="Images\Instructions10.png" />
-    <Content Include="Images\Instructions2.png" />
-    <Content Include="Images\Instructions3.png" />
-    <Content Include="Images\Instructions4.png" />
-    <Content Include="Images\Instructions5.png" />
-    <Content Include="Images\Instructions6.png" />
-    <Content Include="Images\Instructions7.png" />
-    <Content Include="Images\Instructions8.png" />
-    <Content Include="Images\Instructions9.png" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
     <Content Include="Site.Master" />
@@ -279,7 +268,9 @@
       <DependentUpon>WrongQuiz.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
