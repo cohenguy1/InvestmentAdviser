@@ -7,7 +7,7 @@
             <tr>
                 <td>
                     <br />
-                    &nbsp;The following graph represent the earning percentage of several funds.
+                    &nbsp;The following graph presents the historical earning distribution of investment agents in prior years, just to give you a general sense of what the markets is like.
                     <br />
                     <br />
                     &nbsp;The x-axis represent the change of the fund over a year (in percentage).

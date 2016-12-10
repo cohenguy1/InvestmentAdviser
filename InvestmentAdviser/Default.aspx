@@ -7,7 +7,7 @@
 
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
-    <h2>You will receive 20 cents for this HIT and it will take about 10 minutes of your time. </h2>
+    <h2>You will receive 10 cents for this HIT and it will take about 10 minutes of your time. </h2>
     <h2>Game Background</h2>
 
     <div style="text-align: center; width: 800px; margin: 0 auto;">
@@ -24,7 +24,7 @@
             <tr>
                 <td>After each investment, you will see the earnings for that investment.
                     <br />
-                    Your earnings will influence your bonus in this game - for each 10 virtual dollars earned, you will get a real cent as a bonus.
+                    Your earnings will influence your bonus in this game - for each 20 virtual dollars earned, you will get a real cent as a bonus.
                 </td>
 
             </tr>

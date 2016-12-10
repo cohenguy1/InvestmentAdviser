@@ -8,12 +8,12 @@
         <br />
         <table style="text-align: left; width: 700px;" border="1">
             <tr>
-                <td>Choose the <font color="red"><b>Incorrect</b></font> sentence:
+                <td>How much does the agent invest each time?
                         <asp:RadioButtonList ID="rbl1" runat="server">
-                            <asp:ListItem>Each turn, the agent invests 100$ in several stocks.</asp:ListItem>
-                            <asp:ListItem>There are total of 10 investments.</asp:ListItem>
-                            <asp:ListItem>The agent makes investments for one year.</asp:ListItem>
-                            <asp:ListItem>The earnings from each investment affect affect the bonus you get.</asp:ListItem>
+                            <asp:ListItem>10 $</asp:ListItem>
+                            <asp:ListItem>100 $</asp:ListItem>
+                            <asp:ListItem>20 $</asp:ListItem>
+                            <asp:ListItem>40 $</asp:ListItem>
                         </asp:RadioButtonList>
                 </td>
             </tr>
@@ -28,12 +28,13 @@
                 </td>
             </tr>
             <tr>
-                <td>Assuming you have managed to accumulate 400 virtual dollars. What will be your bonus?
+                <td>Assuming you have managed to accumulate 400 virtual dollars (remember that each 20 dollars will get you a bonus of a cent). 
+                    <br />What will be your bonus?
                         <asp:RadioButtonList ID="rbl3" runat="server">
                             <asp:ListItem>10 cents</asp:ListItem>
-                            <asp:ListItem>20 cents</asp:ListItem>
-                            <asp:ListItem>25 cents</asp:ListItem>
                             <asp:ListItem>40 cents</asp:ListItem>
+                            <asp:ListItem>25 cents</asp:ListItem>
+                            <asp:ListItem>20 cents</asp:ListItem>
                         </asp:RadioButtonList>
                 </td>
             </tr>

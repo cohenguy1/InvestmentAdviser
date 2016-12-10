@@ -8,7 +8,7 @@ namespace InvestmentAdviser
 {
     public partial class EndGame : System.Web.UI.Page
     {
-        public const double DollarsPerCent = 10;
+        public const double DollarsPerCent = 20;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,7 +18,7 @@ namespace InvestmentAdviser
                 
                 int totalProfit = Common.GetTotalProfit(ScenarioTurns);
 
-                TotalProfitLbl.Text = totalProfit.ToString("");
+                TotalProfitLbl.Text = totalProfit.ToString("") + " $";
 
                 BonusLbl.Text = GetBonus().ToString("") + " cents";
 

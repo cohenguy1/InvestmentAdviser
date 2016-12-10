@@ -20,7 +20,7 @@ namespace InvestmentAdviser
             }
         }
 
-        public const int MaxNumOfWrongQuizAnswers = 3;
+        public const int MaxNumOfWrongQuizAnswers = 5;
 
         protected void btnNextToProceedToGame_Click(object sender, EventArgs e)
         {
