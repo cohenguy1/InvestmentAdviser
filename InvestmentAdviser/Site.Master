@@ -99,6 +99,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <script src="Scripts/jquery-1.4.1.js"></script>
+<script type="text/javascript" src="Scripts/canvasjs.min.js"></script>
 <script type="text/javascript" language="javascript">
 
 
@@ -107,7 +108,7 @@
     }
     disableBackButton();
     window.onload = disableBackButton();
-    window.onpageshow = function (evt) { if (evt.persisted) disableBackButton() }
+    window.onpageshow = function (evt) { if (evt.persisted) disableBackButton(); onloadFunc(); }
     window.onunload = function () { void (0) }
 
     $(document).ready(function () {
@@ -175,9 +176,64 @@
             $(this).hide(); n();
         });
     }
+
+    function onloadFunc() {
+        disableBackButton();
+        chartFunc();
+    }
+
+    function chartFunc() {
+        var chart = new CanvasJS.Chart(document.getElementById('chart_container'),
+        {
+
+            title: {
+                text: "Writing Custom toolTip function "
+            },
+            toolTip: {
+                content: "{name}: {y}"
+            },
+
+            axisX: {
+                gridColor: "Silver",
+                valueFormatString: "DD/MMM"
+            },
+
+            axisY: {
+                includeZero: false
+            },
+
+            legend: {
+                verticalAlign: "center",
+                horizontalAlign: "right"
+            },
+
+            data: [
+            {
+                type: "line",
+                name: "Visits",
+                dataPoints: [
+                { x: new Date(2010, 0, 3), y: 650 },
+                { x: new Date(2010, 0, 5), y: 700 },
+                { x: new Date(2010, 0, 7), y: 710 },
+                { x: new Date(2010, 0, 9), y: 658 },
+                { x: new Date(2010, 0, 11), y: 734 },
+                { x: new Date(2010, 0, 13), y: 963 },
+                { x: new Date(2010, 0, 15), y: 847 },
+                { x: new Date(2010, 0, 17), y: 853 },
+                { x: new Date(2010, 0, 19), y: 869 },
+                { x: new Date(2010, 0, 21), y: 943 },
+                { x: new Date(2010, 0, 23), y: 970 }
+                ]
+            }
+
+            ]
+        });
+        chart.render();
+    }
+  
 </script>
 
-<body onload=";" onresize="sizeFunction()">
+<body onload=";"">
 
     <form id="form1" runat="server">
 

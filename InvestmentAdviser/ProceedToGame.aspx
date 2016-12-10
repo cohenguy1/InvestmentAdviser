@@ -7,10 +7,19 @@
             <tr>
                 <td>
                     <br />
-                    &nbsp;We will now proceed to the real game.
-                            <br />
+                    &nbsp;The following graph represent the earning percentage of several funds.
                     <br />
                     <br />
+                    &nbsp;The x-axis represent the change of the fund over a year (in percentage).
+                    <br />
+                    <br />
+                    &nbsp;The y-axis represent the probability for that change.
+                    <br />
+                    <br />
+                    <center>
+                        <div id="chart_container" style="height: 300px; width: 80%;"></div>
+                    </center>
+
                     <br />
 
                     &nbsp;Press 'Next' to continue.
@@ -20,6 +29,7 @@
             </tr>
         </table>
     </div>
+    
     <br />
     <asp:Button ID="btnNextToGame" runat="server" Text="Next" OnClick="btnNextToGame_Click" />
 
