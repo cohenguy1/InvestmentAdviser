@@ -137,7 +137,7 @@ namespace InvestmentAdviser
                     command.Append("Turn" + i + ", ");
                 }
 
-                command.Append("TotalPrizePoints, InstructionsTime, AskPosition, VectorNum, Reason) ");
+                command.Append("TotalProfit, InstructionsTime, AskPosition, VectorNum, Reason) ");
                 command.Append("VALUES (@UserId, @AdviserRating,");
 
                 for (int i = 1; i <= Common.TotalInvestmentsTurns; i++)
@@ -145,7 +145,7 @@ namespace InvestmentAdviser
                     command.Append("@Turn" + i + ", ");
                 }
 
-                command.Append("@TotalPrizePoints, @InstructionsTime, @AskPosition, @VectorNum, @Reason) ");
+                command.Append("@TotalProfit, @InstructionsTime, @AskPosition, @VectorNum, @Reason) ");
 
                 using (SQLiteCommand cmd = new SQLiteCommand(command.ToString()))
                 {
@@ -159,7 +159,7 @@ namespace InvestmentAdviser
                         cmd.Parameters.AddWithValue("@Turn" + i, GetTurnEarningToInsertToDb(i));
                     }
 
-                    cmd.Parameters.AddWithValue("@TotalPrizePoints", Common.GetTotalProfit(ScenarioTurns));
+                    cmd.Parameters.AddWithValue("@TotalProfit", Common.GetTotalProfit(ScenarioTurns));
 
                     var instructionTime = GetInstructionsTime();
 

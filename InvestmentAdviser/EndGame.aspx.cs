@@ -99,15 +99,15 @@ namespace InvestmentAdviser
             {
                 using (SQLiteConnection sqlConnection1 = new SQLiteConnection(connectionString))
                 {
-                    using (SQLiteCommand cmd = new SQLiteCommand("INSERT INTO UserFeedback (UserId, Feedback, TotalTime, TotalPrizePoints, Bonus) " + 
-                        "VALUES (@UserId, @Feedback, @TotalTime, @TotalPrizePoints, @Bonus)"))
+                    using (SQLiteCommand cmd = new SQLiteCommand("INSERT INTO UserFeedback (UserId, Feedback, TotalTime, TotalProfit, Bonus) " +
+                        "VALUES (@UserId, @Feedback, @TotalTime, @TotalProfit, @Bonus)"))
                     {
                         cmd.CommandType = CommandType.Text;
                         cmd.Connection = sqlConnection1;
                         cmd.Parameters.AddWithValue("@UserId", UserId);
                         cmd.Parameters.AddWithValue("@Feedback", feedback);
                         cmd.Parameters.AddWithValue("@TotalTime", Math.Round(GameStopwatch.Elapsed.TotalMinutes, 1));
-                        cmd.Parameters.AddWithValue("@TotalPrizePoints", Common.GetTotalProfit(ScenarioTurns));
+                        cmd.Parameters.AddWithValue("@TotalProfit", Common.GetTotalProfit(ScenarioTurns));
                         cmd.Parameters.AddWithValue("@Bonus", bonus);
                         sqlConnection1.Open();
                         cmd.ExecuteNonQuery();
