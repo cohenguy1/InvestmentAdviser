@@ -400,7 +400,7 @@ namespace InvestmentAdviser
                         {
                             for (int i = 0; i < Common.TotalInvestmentsTurns; i++)
                             {
-                                profits[i] = result.GetInt32(i);
+                                profits[i] = (int)result.GetDouble(i);
                             }
                         };
                     }

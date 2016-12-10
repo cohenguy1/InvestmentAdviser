@@ -16,11 +16,11 @@ namespace InvestmentAdviser
             {
                 GameStopwatch.Stop();
                 
-                int prizePoints = Common.GetTotalProfit(ScenarioTurns);
+                int totalProfit = Common.GetTotalProfit(ScenarioTurns);
 
-                TotalPrizePointsLbl.Text = prizePoints.ToString("");
+                TotalProfitLbl.Text = totalProfit.ToString("");
 
-                BonusLbl.Text = Math.Round(prizePoints / PointsPerCent, 2).ToString("0.0") + " cents";
+                BonusLbl.Text = Math.Round(totalProfit / PointsPerCent, 2).ToString("0.0") + " cents";
 
                 dbHandler.UpdateTimesTable(GameState.EndGame);
             }

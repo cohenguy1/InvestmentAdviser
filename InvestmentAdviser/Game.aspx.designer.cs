@@ -148,6 +148,15 @@ namespace InvestmentAdviser {
         protected global::System.Web.UI.WebControls.Label TurnSummaryLbl1;
         
         /// <summary>
+        /// ProfitLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ProfitLbl;
+        
+        /// <summary>
         /// TurnSummaryLbl2 control.
         /// </summary>
         /// <remarks>
@@ -155,42 +164,6 @@ namespace InvestmentAdviser {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label TurnSummaryLbl2;
-        
-        /// <summary>
-        /// TurnSummaryLbl3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TurnSummaryLbl3;
-        
-        /// <summary>
-        /// PrizePointsLbl1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label PrizePointsLbl1;
-        
-        /// <summary>
-        /// PrizePointsLbl2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label PrizePointsLbl2;
-        
-        /// <summary>
-        /// PrizePointsLbl3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label PrizePointsLbl3;
         
         /// <summary>
         /// SummaryNextLbl control.
@@ -299,15 +272,6 @@ namespace InvestmentAdviser {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TableCell cell2;
-        
-        /// <summary>
-        /// cell3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TableCell cell3;
         
         /// <summary>
         /// ScenarioTurn1Cell control.

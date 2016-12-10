@@ -164,14 +164,11 @@ namespace InvestmentAdviser
             LabelInterviewing.Visible = false;
             TurnSummaryLbl1.Visible = true;
             TurnSummaryLbl2.Visible = true;
-            TurnSummaryLbl3.Visible = true;
-            PrizePointsLbl1.Visible = true;
-            PrizePointsLbl2.Visible = true;
-            PrizePointsLbl3.Visible = true;
+            ProfitLbl.Visible = true;
             SummaryNextLbl.Visible = true;
             btnNextTurn.Visible = true;
 
-            TurnSummaryLbl2.Text = GetCurrentTurn().Profit.ToString();
+            ProfitLbl.Text = GetCurrentTurn().Profit.ToString() + "$";
             SummaryNextLbl.Text = "<br /><br />Press 'Next' to proceed to the next turn.<br />";
         }
 
@@ -187,10 +184,7 @@ namespace InvestmentAdviser
         {
             TurnSummaryLbl1.Visible = false;
             TurnSummaryLbl2.Visible = false;
-            TurnSummaryLbl3.Visible = false;
-            PrizePointsLbl1.Visible = false;
-            PrizePointsLbl2.Visible = false;
-            PrizePointsLbl3.Visible = false;
+            ProfitLbl.Visible = false;
             SummaryNextLbl.Visible = false;
             btnNextTurn.Visible = false;
 

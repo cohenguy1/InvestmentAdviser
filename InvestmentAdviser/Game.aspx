@@ -33,11 +33,8 @@
                     <asp:Label ID="MovingJobTitleLabel" runat="server" Style="margin-top: 20px;" Font-Bold="true" Font-Size="X-Large" Visible="false" ForeColor="Green"></asp:Label>
                     <br />
                     <asp:Label ID="TurnSummaryLbl1" runat="server" Font-Size="Large" Visible="false" Text="<br />The investment adviser gained for you&nbsp;"></asp:Label>
-                    <asp:Label ID="TurnSummaryLbl2" runat="server" Font-Size="X-Large" Visible="false" ForeColor="Green" Font-Bold="true"></asp:Label>
-                    <asp:Label ID="TurnSummaryLbl3" runat="server" Font-Size="Large" Visible="false" Text="."></asp:Label>
-                    <asp:Label ID="PrizePointsLbl1" runat="server" Font-Size="Large" Visible="false" Text="<br /><br />Prize points received:&nbsp;"></asp:Label>
-                    <asp:Label ID="PrizePointsLbl2" runat="server" Font-Size="X-Large" Visible="false" ForeColor="Green" Font-Bold="true"></asp:Label>
-                    <asp:Label ID="PrizePointsLbl3" runat="server" Font-Size="Large" Visible="false" Text="."></asp:Label>
+                    <asp:Label ID="ProfitLbl" runat="server" Font-Size="X-Large" Visible="false" ForeColor="Green" Font-Bold="true"></asp:Label>
+                    <asp:Label ID="TurnSummaryLbl2" runat="server" Font-Size="Large" Visible="false" Text="."></asp:Label>
                     <asp:Label ID="SummaryNextLbl" runat="server" Visible="false"></asp:Label>
                     <br />
                     <asp:Button ID="btnNextTurn" runat="server" Visible="false" Text="Next" OnClick="btnNextTurn_Click" />
@@ -117,8 +114,7 @@
             runat="server">
             <asp:TableRow Height="35px">
                 <asp:TableCell ID="cell1" Width="60px" HorizontalAlign="Left" Text="&nbsp;Turns" Style="color: blue;" Font-Bold="true"></asp:TableCell>
-                <asp:TableCell ID="cell2" Width="40px" HorizontalAlign="Center" Text="&nbsp;Gain&nbsp;" Style="color: blue;" Font-Bold="true"></asp:TableCell>
-                <asp:TableCell ID="cell3" Width="60px" HorizontalAlign="Center" Text="&nbsp;Prize Points" Style="color: blue;" Font-Bold="true"></asp:TableCell>
+                <asp:TableCell ID="cell2" Width="60px" HorizontalAlign="Center" Text="&nbsp;Profit&nbsp;" Style="color: blue;" Font-Bold="true"></asp:TableCell>
             </asp:TableRow>
             <asp:TableRow Height="35px">
                 <asp:TableCell ID="ScenarioTurn1Cell" HorizontalAlign="Left" Text="&nbsp;Turn 1"></asp:TableCell>
@@ -161,7 +157,7 @@
                 <asp:TableCell ID="ScenarioTurn10ProfitCell" HorizontalAlign="Center" Text=""></asp:TableCell>
             </asp:TableRow>
             <asp:TableRow Height="35px">
-                <asp:TableCell ID="TotalProfitCell" ColumnSpan="3" Font-Size="Large" Font-Bold="true" ForeColor="Purple" HorizontalAlign="Left" Text="&nbsp;Total Prize Points:"></asp:TableCell>
+                <asp:TableCell ID="TotalProfitCell" ColumnSpan="3" Font-Size="Large" Font-Bold="true" ForeColor="Purple" HorizontalAlign="Left" Text="&nbsp;Total Profit:"></asp:TableCell>
             </asp:TableRow>
 
         </asp:Table>

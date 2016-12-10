@@ -18,11 +18,11 @@
                             </center>
                             <br />
                             <br />
-                            &nbsp;Total Prize Points won:
+                            &nbsp;Total Profit:
                             <br />
                             <br />
                             <center>
-                            <asp:Label ID="TotalPrizePointsLbl" runat="server" Font-Bold="true" ForeColor="Green" Font-Size="Larger"></asp:Label>
+                            <asp:Label ID="TotalProfitLbl" runat="server" Font-Bold="true" ForeColor="Green" Font-Size="Larger"></asp:Label>
                             </center>
                             <br />
                             <br />
