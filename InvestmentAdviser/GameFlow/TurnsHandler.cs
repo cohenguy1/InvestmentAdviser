@@ -25,7 +25,7 @@ namespace InvestmentAdviser
                 UpdateTurnRow(currentTurn, turnRow);
             }
 
-            TotalProfitCell.Text = "&nbsp;Total Profit: " + totalProfit.ToString() + " $";
+            TotalProfitCell.Text = "&nbsp;Total Profit: " + totalProfit.ToString() + " $ &nbsp;";
         }
 
         private void UpdateNewRow(int turnNumber)

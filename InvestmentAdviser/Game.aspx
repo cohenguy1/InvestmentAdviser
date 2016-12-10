@@ -32,7 +32,7 @@
                     <asp:Label ID="MovingToNextPositionLabel" runat="server" Font-Size="Larger" Visible="false"></asp:Label>
                     <asp:Label ID="MovingJobTitleLabel" runat="server" Style="margin-top: 20px;" Font-Bold="true" Font-Size="X-Large" Visible="false" ForeColor="Green"></asp:Label>
                     <br />
-                    <asp:Label ID="TurnSummaryLbl1" runat="server" Font-Size="Large" Visible="false" Text="<br />The investment adviser gained for you&nbsp;"></asp:Label>
+                    <asp:Label ID="TurnSummaryLbl1" runat="server" Font-Size="Large" Visible="false" Text="<br />The investment agent gained for you&nbsp;"></asp:Label>
                     <asp:Label ID="ProfitLbl" runat="server" Font-Size="X-Large" Visible="false" ForeColor="Green" Font-Bold="true"></asp:Label>
                     <asp:Label ID="TurnSummaryLbl2" runat="server" Font-Size="Large" Visible="false" Text="."></asp:Label>
                     <asp:Label ID="SummaryNextLbl" runat="server" Visible="false"></asp:Label>
@@ -56,7 +56,7 @@
                             <td>&nbsp;Hi!
                                         <br />
                                 <br />
-                                &nbsp;We stopped for a moment so you can rate the Investment Adviser.
+                                &nbsp;We stopped for a moment so you can rate the Investment agent.
                                         <br />
                                 &nbsp;Your rating should be based on how good you think the adviser is.
                                         <br />
@@ -67,7 +67,7 @@
                                 </asp:Label>
                                 <br />
                                 <br />
-                                &nbsp;Rate the Investment Adviser from 1 to 10, 10 being the best:
+                                &nbsp;Rate the Investment agent from 1 to 10, 10 being the best:
                                 <br />
                                 <br />
 
@@ -179,7 +179,7 @@
             }
 
             if (savedRank == 0) {
-                alert("Please rate the Investment Adviser!");
+                alert("Please rate the Investment agent!");
                 return false;
             }
 

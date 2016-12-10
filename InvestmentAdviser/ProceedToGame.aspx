@@ -16,10 +16,13 @@
                     &nbsp;The y-axis represent the probability for that change.
                     <br />
                     <br />
+                    &nbsp;As you can see, all profits are non-negative.
+                    <br />
+                    <br />
                     <center>
-                        <div id="chart_container" style="height: 300px; width: 80%;"></div>
+                        <div id="chart_container" style="height: 350px; width: 90%;"></div>
                     </center>
-
+                    <br />
                     <br />
 
                     &nbsp;Press 'Next' to continue.

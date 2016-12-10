@@ -29,7 +29,7 @@ namespace InvestmentAdviser
         private double GetBonus()
         {
             var dollars = Common.GetTotalProfit(ScenarioTurns) / PointsPerCent;
-            var cents = dollars / 100;
+            var cents = dollars / 10;
             return Math.Round(cents, 2);
         }
 

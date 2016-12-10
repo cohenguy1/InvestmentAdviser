@@ -24,7 +24,7 @@
             <tr>
                 <td>After each investment, you will see the earnings for that investment.
                     <br />
-                    Your earnings will influence your bonus in this game - for each 25 virtual dollars earned, you will get a real cent as a bonus.
+                    Your earnings will influence your bonus in this game - for each 10 virtual dollars earned, you will get a real cent as a bonus.
                 </td>
 
             </tr>
