@@ -8,7 +8,9 @@ namespace InvestmentAdviser
 {
     public partial class EndGame : System.Web.UI.Page
     {
-        public const double DollarsPerCent = 20;
+        public const double VirtualDollarsPerCent = 20;
+
+        public const double centToDollar = 1 / 100.0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,7 +20,7 @@ namespace InvestmentAdviser
                 
                 int totalProfit = Common.GetTotalProfit(ScenarioTurns);
 
-                TotalProfitLbl.Text = totalProfit.ToString("") + " $";
+                TotalProfitLbl.Text = "$ " + totalProfit.ToString("");
 
                 BonusLbl.Text = GetBonus().ToString("") + " cents";
 
@@ -28,7 +30,7 @@ namespace InvestmentAdviser
 
         private int GetBonus()
         {
-            var cents = Common.GetTotalProfit(ScenarioTurns) / DollarsPerCent;
+            var cents = Common.GetTotalProfit(ScenarioTurns) / VirtualDollarsPerCent;
             return (int)Math.Round(cents, 0);
         }
 
@@ -88,10 +90,12 @@ namespace InvestmentAdviser
             dbHandler.SetVectorNextAskPosition(nextAskPosition);
         }
 
-        private void SendFeedback(int bonus)
+        private void SendFeedback(int bonusCents)
         {
             String connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
             string feedback = feedbackTxtBox.Text;
+
+            var bonusDollars = bonusCents * centToDollar;
 
             try
             {
@@ -106,7 +110,7 @@ namespace InvestmentAdviser
                         cmd.Parameters.AddWithValue("@Feedback", feedback);
                         cmd.Parameters.AddWithValue("@TotalTime", Math.Round(GameStopwatch.Elapsed.TotalMinutes, 1));
                         cmd.Parameters.AddWithValue("@TotalProfit", Common.GetTotalProfit(ScenarioTurns));
-                        cmd.Parameters.AddWithValue("@Bonus", bonus);
+                        cmd.Parameters.AddWithValue("@Bonus", bonusDollars);
                         sqlConnection1.Open();
                         cmd.ExecuteNonQuery();
 

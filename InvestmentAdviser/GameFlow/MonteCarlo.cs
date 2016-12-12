@@ -10,7 +10,7 @@ namespace InvestmentAdviser
 {
     public static class MonteCarlo
     {
-        public static double[] ChangeProbabilitiesArray = new double[Common.NumOfChanges];
+        public static int[] ChangesArray = new int[Common.NumOfChanges];
 
         public const int NumOfVectors = 1000000;
 
@@ -18,22 +18,16 @@ namespace InvestmentAdviser
 
         public static void InitializeChangeProbabilities()
         {
-            FileStream fs = new FileStream("NasdaqChange.txt", FileMode.Open);
-            StreamReader sr = new StreamReader(fs);
-
+            DbHandler dbHandler = new DbHandler();
+            var changes = dbHandler.GetChanges();
+            
             for (int i = 0; i < Common.NumOfChanges; i++)
             {
-                string line = sr.ReadLine();
-
-                var change = double.Parse(line);
-
-                change = Math.Round(change, 2);
-
-                ChangeProbabilitiesArray[i] = change;
+                ChangesArray[i] = changes[i];
             }
         }
 
-        public static bool ShouldAsk(double[] changes, int stoppingDecision, Random random)
+        public static bool ShouldAsk(int[] changes, int stoppingDecision, Random random)
         {
             double[] exponentialSmoothing = new double[Common.TotalInvestmentsTurns];
             double[] exponentialSmoothingAccumulated = new double[Common.TotalInvestmentsTurns];
@@ -86,11 +80,11 @@ namespace InvestmentAdviser
             return !foundBetter;
         }
 
-        private static double GetRandomChange(Random random)
+        private static int GetRandomChange(Random random)
         {
             var changeIndex = random.Next(Common.NumOfChanges);
 
-            return ChangeProbabilitiesArray[changeIndex];
+            return ChangesArray[changeIndex];
         }
     }
 }

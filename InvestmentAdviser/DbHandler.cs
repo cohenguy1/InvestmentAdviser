@@ -20,10 +20,10 @@ namespace InvestmentAdviser
             if (isFriend)
             {
                 Random ran = new Random();
-                int randomAsk = ran.Next(4);
+                int randomAsk = ran.Next(5);
 
                 VectorNum = ran.Next(50) + 1;
-                
+                return AskPositionHeuristic.MonteCarlo;
                 switch (randomAsk)
                 {
                     case 0:
@@ -394,13 +394,13 @@ namespace InvestmentAdviser
                     cmd.Connection = sqlConnection1;
                     sqlConnection1.Open();
 
-                    using (SQLiteDataReader result = (SQLiteDataReader)cmd.ExecuteReader())
+                    using (SQLiteDataReader result = cmd.ExecuteReader())
                     {
                         while (result.Read())
                         {
                             for (int i = 0; i < Common.TotalInvestmentsTurns; i++)
                             {
-                                profits[i] = (int)result.GetDouble(i);
+                                profits[i] = (int)result.GetInt32(i);
                             }
                         };
                     }
@@ -408,6 +408,38 @@ namespace InvestmentAdviser
             }
 
             return profits;
+        }
+
+        public int[] GetChanges()
+        {
+            var connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
+            int[] changes = new int[Common.NumOfChanges];
+
+            using (SQLiteConnection sqlConnection1 = new SQLiteConnection(connectionString))
+            {
+                var command = "Select Change from Changes";
+
+                using (SQLiteCommand cmd = new SQLiteCommand(command))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Connection = sqlConnection1;
+                    sqlConnection1.Open();
+
+                    using (SQLiteDataReader result = cmd.ExecuteReader())
+                    {
+                        int count = 0;
+
+                        while (result.Read())
+                        {
+                            var change = result.GetInt32(0);
+
+                            changes[count] = change;
+                        };
+                    }
+                }
+            }
+
+            return changes;
         }
     }
 }

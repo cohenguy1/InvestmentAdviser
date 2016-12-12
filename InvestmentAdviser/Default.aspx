@@ -16,7 +16,7 @@
                 <td>In this game our Investment Agent will invest some virtual money on your behalf.</td>
             </tr>
             <tr>
-                <td>The agent will make 20 investments, each time investing 100$ on several stocks for one year.
+                <td>The agent will make 20 investments, each time investing $100 on several stocks for one year.
                     <br />
                     <br />
                 </td>

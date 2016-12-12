@@ -45,7 +45,7 @@ namespace InvestmentAdviser
             
             if (AskPosition == AskPositionHeuristic.MonteCarlo)
             {
-                double[] changes = new double[Common.TotalInvestmentsTurns];
+                int[] changes = new int[Common.TotalInvestmentsTurns];
                 var stoppingPosition = -1;
 
                 for (var turnIndex = 0; turnIndex < Common.TotalInvestmentsTurns; turnIndex++)
@@ -69,7 +69,7 @@ namespace InvestmentAdviser
             return false;
         }
 
-        private bool AskMonteCarlo(double[] changes, int stoppingPosition)
+        private bool AskMonteCarlo(int[] changes, int stoppingPosition)
         {
             if (AlreadyPerformingMonteCarlo)
             {

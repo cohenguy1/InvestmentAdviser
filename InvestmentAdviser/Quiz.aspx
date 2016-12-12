@@ -29,7 +29,7 @@
             </tr>
             <tr>
                 <td>Assuming you have managed to accumulate 400 virtual dollars (remember that each 20 dollars will get you a bonus of a cent). 
-                    <br />What will be your bonus?
+                    What will be your bonus?
                         <asp:RadioButtonList ID="rbl3" runat="server">
                             <asp:ListItem>10 cents</asp:ListItem>
                             <asp:ListItem>40 cents</asp:ListItem>
