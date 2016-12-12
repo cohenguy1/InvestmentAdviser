@@ -23,7 +23,7 @@ namespace InvestmentAdviser
                 int randomAsk = ran.Next(5);
 
                 VectorNum = ran.Next(50) + 1;
-                return AskPositionHeuristic.MonteCarlo;
+                
                 switch (randomAsk)
                 {
                     case 0:
