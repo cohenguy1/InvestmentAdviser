@@ -35,13 +35,13 @@ namespace InvestmentAdviser
 
         public static bool ShouldAsk(int[] profits, int stoppingDecision)
         {
-            var ask = profits[stoppingDecision] <= minimalProfitToAsk[stoppingDecision + 1];
+            var ask = profits[stoppingDecision] >= minimalProfitToAsk[stoppingDecision + 1];
             return ask;
         }
 
         public static bool ShouldAsk(int stoppingDecision, ScenarioTurn currentTurn)
         {
-            return currentTurn.Profit <= minimalProfitToAsk[stoppingDecision + 1];
+            return currentTurn.Profit >= minimalProfitToAsk[stoppingDecision + 1];
         }
     }
 }

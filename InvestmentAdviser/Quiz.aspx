@@ -10,10 +10,10 @@
             <tr>
                 <td colspan="2">&nbsp;How much does the agent invest each time?
                         <asp:RadioButtonList ID="rbl1" runat="server">
-                            <asp:ListItem>10 $</asp:ListItem>
-                            <asp:ListItem>100 $</asp:ListItem>
-                            <asp:ListItem>20 $</asp:ListItem>
-                            <asp:ListItem>40 $</asp:ListItem>
+                            <asp:ListItem>$ 10</asp:ListItem>
+                            <asp:ListItem>$ 100</asp:ListItem>
+                            <asp:ListItem>$ 20</asp:ListItem>
+                            <asp:ListItem>$ 40</asp:ListItem>
                         </asp:RadioButtonList>
                 </td>
             </tr>
