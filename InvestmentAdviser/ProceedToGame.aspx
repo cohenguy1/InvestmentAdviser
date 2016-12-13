@@ -7,7 +7,7 @@
             <tr>
                 <td>
                     <br />
-                    &nbsp;The following graph presents the historical earning distribution of investment agents in prior years, just to give you a general sense of what the markets is like.
+                    &nbsp;The following graph presents the historical earning distribution of investment agents in prior years, just to give you a general sense of what the market is like.
                     <br />
                     <br />
                     &nbsp;The x-axis represent the change of the fund over a year (in percentage).
