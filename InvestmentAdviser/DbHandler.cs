@@ -434,6 +434,8 @@ namespace InvestmentAdviser
                             var change = result.GetInt32(0);
 
                             changes[count] = change;
+
+                            count++;
                         };
                     }
                 }
