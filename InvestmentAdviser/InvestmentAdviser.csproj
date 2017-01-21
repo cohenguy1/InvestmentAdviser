@@ -93,9 +93,6 @@
     <Content Include="Game.aspx" />
     <Content Include="BrowserProblem.aspx" />
     <Content Include="InstructionsPage.aspx" />
-    <Content Include="NasdaqChange.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="ProceedToGame.aspx" />
     <Content Include="Quiz.aspx" />
     <Content Include="ResolutionProblem.aspx" />

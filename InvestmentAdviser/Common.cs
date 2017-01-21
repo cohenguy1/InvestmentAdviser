@@ -11,7 +11,7 @@ namespace InvestmentAdviser
 
         public const int NumOfTurnsInTable = 10;
 
-        public const int NumOfChanges = 100;
+        public const int NumOfChanges = 300;
 
         public static int GetTotalProfit(IEnumerable<ScenarioTurn> scenarioTurns)
         {
