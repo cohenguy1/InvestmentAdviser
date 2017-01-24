@@ -46,8 +46,8 @@ namespace InvestmentAdviser
                 using (SQLiteConnection sqlConnection1 = new SQLiteConnection(connectionString))
                 {
                     using (SQLiteCommand cmd = new SQLiteCommand
-                        ("INSERT INTO Quiz (UserId, TryNumber, Answer1, Answer2, Answer3, Correct) " +
-                         "VALUES (@UserId, @TryNumber, @Answer1, @Answer2, @Answer3, @Correct)"))
+                        ("INSERT INTO Quiz (UserId, TryNumber, Answer1, Answer2, Answer3, Explanation, Correct) " +
+                         "VALUES (@UserId, @TryNumber, @Answer1, @Answer2, @Answer3, @Explanation, @Correct)"))
                     {
                         cmd.CommandType = CommandType.Text;
                         cmd.Connection = sqlConnection1;
@@ -56,6 +56,7 @@ namespace InvestmentAdviser
                         cmd.Parameters.AddWithValue("@Answer1", answer1);
                         cmd.Parameters.AddWithValue("@Answer2", answer2);
                         cmd.Parameters.AddWithValue("@Answer3", answer3);
+                        cmd.Parameters.AddWithValue("@Explanation", explanationTxtBox.Text);
                         cmd.Parameters.AddWithValue("@Correct", correct.ToString());
                         sqlConnection1.Open();
                         cmd.ExecuteNonQuery();

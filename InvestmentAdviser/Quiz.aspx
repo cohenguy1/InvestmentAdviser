@@ -22,9 +22,9 @@
                     <br />
                     &nbsp;What is the exact range of the possible profits for each investment?
                         <asp:RadioButtonList ID="rbl2" runat="server">
+                            <asp:ListItem>0 - 10</asp:ListItem>
                             <asp:ListItem>-10 - 10</asp:ListItem>
-                            <asp:ListItem>-50 - 50</asp:ListItem>
-                            <asp:ListItem>0 - 30</asp:ListItem>
+                            <asp:ListItem>-30 - 100</asp:ListItem>
                             <asp:ListItem>0 - 100</asp:ListItem>
                         </asp:RadioButtonList>
                 </td>
@@ -33,7 +33,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2">&nbsp;Assuming you have managed to accumulate 400 virtual dollars (remember that each 20 dollars will get you a bonus of a cent). 
+                <td colspan="2">&nbsp;Assuming you have managed to accumulate 600 virtual dollars (remember that each 30 dollars will get you a bonus of a cent). 
                     What will be your bonus?
                         <asp:RadioButtonList ID="rbl3" runat="server">
                             <asp:ListItem>10 cents</asp:ListItem>
@@ -41,6 +41,11 @@
                             <asp:ListItem>25 cents</asp:ListItem>
                             <asp:ListItem>20 cents</asp:ListItem>
                         </asp:RadioButtonList>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">&nbsp;Please explain what you understood from the earning distribution of investments of the Investment agent. 
+                    <asp:TextBox ID="explanationTxtBox" onkeypress="return this.value.length<=300" runat="server" Rows="4" Columns="60" TextMode="multiline" Style="margin-left: 5px"></asp:TextBox>
                 </td>
             </tr>
         </table>

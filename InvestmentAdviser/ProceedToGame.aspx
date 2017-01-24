@@ -16,7 +16,7 @@
                     &nbsp;The y-axis represent the probability for that change.
                     <br />
                     <br />
-                    &nbsp;As you can see, all profits are non-negative.
+                    &nbsp;As you can see, some profits are negative (loss after a failed investment).
                     <br />
                     <br />
                     <center>

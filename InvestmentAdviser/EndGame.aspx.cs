@@ -8,7 +8,7 @@ namespace InvestmentAdviser
 {
     public partial class EndGame : System.Web.UI.Page
     {
-        public const double VirtualDollarsPerCent = 20;
+        public const double VirtualDollarsPerCent = 30;
 
         public const double centToDollar = 1 / 100.0;
 
