@@ -119,6 +119,11 @@ namespace InvestmentAdviser
             dbHandler.UpdateTimesTable(GameState.AfterRate);
 
             TimerGame.Enabled = true;
+
+            if (CurrentTurnNumber == Common.TotalInvestmentsTurns)
+            {
+                Response.Redirect("EndGame.aspx");
+            }
         }
 
         private void SaveRatingToDB(int adviserRating)

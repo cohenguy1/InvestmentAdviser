@@ -201,8 +201,18 @@ namespace InvestmentAdviser
             }
             else
             {
-                TimerGame.Enabled = false;
-                Response.Redirect("EndGame.aspx");
+                if (AskForRating)
+                {
+                    RateAdvisor();
+
+                    AskForRating = false;
+                    AlreadyAskedForRating = true;
+                }
+                else
+                {
+                    TimerGame.Enabled = false;
+                    Response.Redirect("EndGame.aspx");
+                }
             }
         }
     }
