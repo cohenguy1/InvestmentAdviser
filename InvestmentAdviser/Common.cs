@@ -13,6 +13,8 @@ namespace InvestmentAdviser
 
         public const int NumOfChanges = 300;
 
+        public const string MovingToNextString = "Moving on to the next turn:<br /><br />";
+
         public static int GetTotalProfit(IEnumerable<ScenarioTurn> scenarioTurns)
         {
             int totalProfit = scenarioTurns.Where(turn => turn.Played).

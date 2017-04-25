@@ -13,14 +13,6 @@ namespace InvestmentAdviser
 {
     public partial class UserInfoPage : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!IsPostBack)
-            {
-                dbHandler.UpdateTimesTable(GameState.UserInfo);
-            }
-        }
-
         protected void btnNextToInstructions_Click(object sender, EventArgs e)
         {
             // Save user info to DB

@@ -13,7 +13,7 @@ namespace InvestmentAdviser
     {
         private bool NeedToAskRating()
         {
-            if (AlreadyAskedForRating || GameMode != GameMode.Advisor)
+            if (AlreadyAskedForRating)
             {
                 return false;
             }
@@ -45,44 +45,10 @@ namespace InvestmentAdviser
             
             if (AskPosition == AskPositionHeuristic.MonteCarlo)
             {
-                int[] changes = new int[Common.TotalInvestmentsTurns];
-                var stoppingPosition = -1;
-
-                for (var turnIndex = 0; turnIndex < Common.TotalInvestmentsTurns; turnIndex++)
-                {
-                    if (ScenarioTurns[turnIndex].Played)
-                    {
-                        changes[turnIndex] = ScenarioTurns[turnIndex].Profit;
-                        stoppingPosition++;
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-
-                var shouldAsk = AskMonteCarlo(changes, stoppingPosition);
-
-                return shouldAsk;
+                return MonteCarlo.ShouldAsk(CurrentTurnNumber, GetCurrentTurn());
             }
 
             return false;
-        }
-
-        private bool AskMonteCarlo(int[] changes, int stoppingPosition)
-        {
-            if (AlreadyPerformingMonteCarlo)
-            {
-                return false;
-            }
-
-            AlreadyPerformingMonteCarlo = true;
-
-            bool shouldAsk = MonteCarlo.ShouldAsk(changes, stoppingPosition, new Random());
-
-            AlreadyPerformingMonteCarlo = false;
-
-            return shouldAsk;
         }
 
         protected void RateAdvisor()
@@ -90,8 +56,6 @@ namespace InvestmentAdviser
             TimerGame.Enabled = false;
 
             MultiView2.ActiveViewIndex = 1;
-
-            dbHandler.UpdateTimesTable(GameState.Rate);
         }
 
         protected void btnRate_Click(object sender, EventArgs e)
@@ -115,8 +79,6 @@ namespace InvestmentAdviser
             SaveRatingToDB(agentRating);
 
             MultiView2.ActiveViewIndex = 0;
-
-            dbHandler.UpdateTimesTable(GameState.AfterRate);
 
             TimerGame.Enabled = true;
 
@@ -142,7 +104,7 @@ namespace InvestmentAdviser
                     command.Append("Turn" + i + ", ");
                 }
 
-                command.Append("TotalProfit, InstructionsTime, AskPosition, VectorNum, Reason) ");
+                command.Append("RatingPosition, AskPosition, VectorNum, Reason) ");
                 command.Append("VALUES (@UserId, @AdviserRating,");
 
                 for (int i = 1; i <= Common.TotalInvestmentsTurns; i++)
@@ -150,7 +112,7 @@ namespace InvestmentAdviser
                     command.Append("@Turn" + i + ", ");
                 }
 
-                command.Append("@TotalProfit, @InstructionsTime, @AskPosition, @VectorNum, @Reason) ");
+                command.Append("@RatingPosition, @AskPosition, @VectorNum, @Reason) ");
 
                 using (SQLiteCommand cmd = new SQLiteCommand(command.ToString()))
                 {
@@ -164,27 +126,13 @@ namespace InvestmentAdviser
                         cmd.Parameters.AddWithValue("@Turn" + i, GetTurnEarningToInsertToDb(i));
                     }
 
-                    cmd.Parameters.AddWithValue("@TotalProfit", Common.GetTotalProfit(ScenarioTurns));
-
-                    var instructionTime = GetInstructionsTime();
-
-                    cmd.Parameters.AddWithValue("@InstructionsTime", instructionTime);
+                    cmd.Parameters.AddWithValue("@RatingPosition", CurrentTurnNumber - 1);
                     cmd.Parameters.AddWithValue("@AskPosition", AskPosition.ToString());
                     cmd.Parameters.AddWithValue("@VectorNum", VectorNum);
                     cmd.Parameters.AddWithValue("@Reason", reasonTxtBox.Text);
                     cmd.ExecuteNonQuery();
                 }
             }
-        }
-
-        private string GetInstructionsTime()
-        {
-            if (InstructionsStopwatch == null)
-            {
-                return string.Empty;
-            }
-
-            return InstructionsStopwatch.Elapsed.TotalMinutes.ToString("0.00");
         }
 
         private string GetTurnEarningToInsertToDb(int turnIndex)

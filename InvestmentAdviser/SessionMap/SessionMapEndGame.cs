@@ -7,7 +7,6 @@ namespace InvestmentAdviser
 {
     public partial class EndGame : System.Web.UI.Page
     {
-        
         public string UserId
         {
             get { var userId = Session[SessionMap.UserIdStr] == null ? string.Empty : (string)Session[SessionMap.UserIdStr]; return userId; }
@@ -26,13 +25,6 @@ namespace InvestmentAdviser
             set { Session[SessionMap.AskPositionStr] = value; }
         }
 
-        public Stopwatch GameStopwatch
-        {
-            get { return (Stopwatch)Session[SessionMap.GameStopwatchStr]; }
-            set { Session[SessionMap.GameStopwatchStr] = value; }
-        }
-
-        
         public DbHandler dbHandler
         {
             get { return (DbHandler)Session[SessionMap.DbHandlerStr]; }

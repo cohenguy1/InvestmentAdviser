@@ -21,11 +21,5 @@ namespace InvestmentAdviser
             get { return (int?)Session[SessionMap.VectorNumStr]; }
             set { Session[SessionMap.VectorNumStr] = value; }
         }
-
-        public DbHandler dbHandler
-        {
-            get { return (DbHandler)Session[SessionMap.DbHandlerStr]; }
-            set { Session[SessionMap.DbHandlerStr] = value; }
-        }
     }
 }

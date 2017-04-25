@@ -1,80 +1,52 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 using System.Diagnostics;
 using System.Web;
 using InvestmentAdviser.Enums;
-using InvestmentAdviser.Logic;
 
 namespace InvestmentAdviser
 {
     public partial class Default : System.Web.UI.Page
     {
         // TODO what about losing prize points?
-        // TODO quiz
-        // TODO PDF of changes
-        // TODO add images
-        // TODO instructions
-        // TODO enable MonteCarlo and fix issue of NasdaqChange.txt (configuration.xml)
         // TODO fix proceed to game
-        // TODO another ... row on turns table?
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                if (GameMode == GameMode.Initial)
+                string assignmentId = Request.QueryString["assignmentId"];
+
+                // friend assigment
+                if (assignmentId == null)
                 {
-                    string assignmentId = Request.QueryString["assignmentId"];
-
-                    // friend assigment
-                    if (assignmentId == null)
-                    {
-                        Session["user_id"] = "friend";
-                        Session["turkAss"] = "turkAss";
-                        Session["hitId"] = "hit id friend";
-                        btnNextToInfo.Enabled = true;
-                    }
-                    //from AMT but did not took the assigment
-                    else if (assignmentId.Equals("ASSIGNMENT_ID_NOT_AVAILABLE"))
-                    {
-                        btnNextToInfo.Enabled = false;
-                        return;
-                    }
-                    //from AMT and accepted the assigment - continue to experiment
-                    else
-                    {
-                        Session["user_id"] = Request.QueryString["workerId"];   // save participant's user ID
-                        Session["turkAss"] = assignmentId;                      // save participant's assignment ID
-                        Session["hitId"] = Request.QueryString["hitId"];        // save the hit id
-                        btnNextToInfo.Enabled = true;
-                    }
-
-                    NumOfWrongQuizAnswers = 0;
-
-                    dbHandler = new DbHandler();
-
-                    GameStateStopwatch = new Stopwatch();
-                    GameStateStopwatch.Start();
-
-                    DecideRandomStuff();                    
-
-                    GenerateScenarioTurns();
+                    Session["user_id"] = "friend";
+                    Session["turkAss"] = "turkAss";
+                    Session["hitId"] = "hit id friend";
+                    btnNextToInfo.Enabled = true;
                 }
+                //from AMT but did not took the assigment
+                else if (assignmentId.Equals("ASSIGNMENT_ID_NOT_AVAILABLE"))
+                {
+                    btnNextToInfo.Enabled = false;
+                    return;
+                }
+                //from AMT and accepted the assigment - continue to experiment
+                else
+                {
+                    Session["user_id"] = Request.QueryString["workerId"];   // save participant's user ID
+                    Session["turkAss"] = assignmentId;                      // save participant's assignment ID
+                    Session["hitId"] = Request.QueryString["hitId"];        // save the hit id
+                    btnNextToInfo.Enabled = true;
+                }
+
+                NumOfWrongQuizAnswers = 0;
+
+                dbHandler = new DbHandler();
+
+                DecideRandomStuff();
             }
-        }
-
-        private void GenerateScenarioTurns()
-        {
-            var scenarioTurns = new List<ScenarioTurn>();
-
-            for (int i = 1; i <= Common.TotalInvestmentsTurns; i++)
-            {
-                scenarioTurns.Add(new ScenarioTurn(i));
-            }
-
-            ScenarioTurns = scenarioTurns;
         }
 
         private void DecideRandomStuff()
@@ -96,9 +68,6 @@ namespace InvestmentAdviser
 
         protected void btnNextToInfo_Click(object sender, EventArgs e)
         {
-            GameStopwatch = new Stopwatch();
-            GameStopwatch.Start();
-
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
 
             if (!UserId.Equals("friend"))

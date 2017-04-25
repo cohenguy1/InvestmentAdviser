@@ -6,21 +6,8 @@ namespace InvestmentAdviser
 {
     public partial class InstructionsPage : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!IsPostBack)
-            {
-                InstructionsStopwatch = new Stopwatch();
-                InstructionsStopwatch.Start();
-
-                dbHandler.UpdateTimesTable(GameState.Instructions);
-            }
-        }
-
         protected void btnNextInstruction_Click(object sender, EventArgs e)
         {
-            InstructionsStopwatch.Stop();
-
             Response.Redirect("Quiz.aspx");
         }
     }

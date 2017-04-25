@@ -1,6 +1,7 @@
 ﻿using InvestmentAdviser.Enums;
 using InvestmentAdviser.Logic;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -22,14 +23,11 @@ namespace InvestmentAdviser
 
                 MultiView2.ActiveViewIndex = 0;
 
-                GameMode = GameMode.Advisor;
-
                 ClearTurnTable();
 
                 FillScenarioTurns();
 
-                ImageInterview.Visible = true;
-                LabelInterviewing.Visible = true;
+                ShowInterviewImages();
 
                 CurrentTurnNumber = 1;
 
@@ -41,10 +39,14 @@ namespace InvestmentAdviser
         {
             var profits = dbHandler.GetScenariosProfits();
 
-            for (int i = 0; i < Common.TotalInvestmentsTurns; i++)
+            var scenarioTurns = new List<ScenarioTurn>();
+
+            for (int i = 1; i <= Common.TotalInvestmentsTurns; i++)
             {
-                ScenarioTurns[i].SetProfit(profits[i]);
+                scenarioTurns.Add(new ScenarioTurn(i, profits[i - 1]));
             }
+
+            ScenarioTurns = scenarioTurns;
         }
 
         protected void btnNextToQuiz_Click(object sender, EventArgs e)
@@ -70,17 +72,17 @@ namespace InvestmentAdviser
 
         private void SetTitle()
         {
-            string turnTitle = GetCurrentJobTitle();
             var currentTurnNumber = CurrentTurnNumber;
+            string turnTitle = GetJobTitle(currentTurnNumber);
 
             PositionHeader.Text = turnTitle;
 
             if (currentTurnNumber >= 1)
             {
-                MovingToNextPositionLabel.Text = "Moving on to the next turn:" + "<br />" + "<br />";
+                MovingToNextPositionLabel.Text = Common.MovingToNextString;
                 MovingToNextPositionLabel.Visible = true;
 
-                MovingJobTitleLabel.Text = turnTitle + "<br />" + "<br />" + "<br />";
+                MovingJobTitleLabel.Text = turnTitle + "<br /><br /><br />";
                 MovingJobTitleLabel.Visible = true;
 
                 if (currentTurnNumber > 1 && currentTurnNumber <= Common.NumOfTurnsInTable)
@@ -98,7 +100,7 @@ namespace InvestmentAdviser
             {
                 ShiftCells();
 
-                UpdateNewRow(CurrentTurnNumber);
+                UpdateNewRow(currentTurnNumber);
             }
         }
 
@@ -137,8 +139,6 @@ namespace InvestmentAdviser
 
         private void CleanCurrentScenarioTurn()
         {
-            TimerGame.Enabled = false;
-
             ClearInterviewImages();
         }
 

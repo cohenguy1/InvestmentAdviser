@@ -19,6 +19,9 @@ namespace InvestmentAdviser
 
             if (isFriend)
             {
+                VectorNum = 1;
+                return AskPositionHeuristic.MonteCarlo;
+
                 Random ran = new Random();
                 int randomAsk = ran.Next(5);
 
@@ -37,7 +40,7 @@ namespace InvestmentAdviser
                     case 3:
                         return AskPositionHeuristic.Optimal;
                     case 4:
-                        MonteCarlo.InitializeChangeProbabilities();
+                        // MonteCarlo.InitializeChangeProbabilities();
                         return AskPositionHeuristic.MonteCarlo;
                     default:
                         return AskPositionHeuristic.First;
@@ -59,7 +62,7 @@ namespace InvestmentAdviser
             VectorNum = GetFirstVectorSatisfying(AskPositionHeuristic.MonteCarlo);
             if (VectorNum != null)
             {
-                MonteCarlo.InitializeChangeProbabilities();
+                // MonteCarlo.InitializeChangeProbabilities();
                 return AskPositionHeuristic.MonteCarlo;
             }
 
@@ -230,23 +233,6 @@ namespace InvestmentAdviser
             return intValue;
         }
 
-        public static void SetIntToConfig(string key, int value)
-        {
-            var connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
-
-            using (SQLiteConnection sqlConnection1 = new SQLiteConnection(connectionString))
-            {
-                using (SQLiteCommand cmd = new SQLiteCommand("update Configuration set Value='" + value.ToString() + "' Where Key='" + key + "'"))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    cmd.Connection = sqlConnection1;
-                    sqlConnection1.Open();
-
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
-
         public void SetVectorNextAskPosition(string nextAskPosition)
         {
             var connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
@@ -270,106 +256,6 @@ namespace InvestmentAdviser
                     cmd2.ExecuteNonQuery();
                 }
             }
-        }
-
-        private string GetGameStateColumn(GameState gameState)
-        {
-            switch (gameState)
-            {
-                case GameState.UserInfo:
-                    return "UserInfo";
-                case GameState.Instructions:
-                    return "Instructions";
-                case GameState.Quiz:
-                    return "Quiz";
-                case GameState.GameStart:
-                    return "GameStart";
-                case GameState.BeforeRate:
-                    return "BeforeRate";
-                case GameState.Rate:
-                    return "Rate";
-                case GameState.AfterRate:
-                    return "AfterRate";
-                case GameState.EndGame:
-                    return "EndGame";
-                case GameState.CollectedPrize:
-                    return "CollectedPrize";
-            }
-
-            return null;
-        }
-
-        public void UpdateTimesTable(GameState gameState)
-        {
-            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
-
-            GameStateStopwatch.Stop();
-            var minutes = Math.Round(GameStateStopwatch.Elapsed.TotalMinutes, 1);
-
-            if (gameState == GameState.UserInfo)
-            {
-                using (SQLiteConnection sqlConnection1 = new SQLiteConnection(connectionString))
-                {
-                    using (SQLiteCommand cmd = new SQLiteCommand("Select UserId from [Times] Where UserId='" + UserId + "'"))
-                    {
-                        cmd.CommandType = CommandType.Text;
-                        cmd.Connection = sqlConnection1;
-                        sqlConnection1.Open();
-
-                        string userId = (string)cmd.ExecuteScalar();
-
-                        if (userId != null)
-                        {
-                            //new user - insert to DB
-                            using (SQLiteCommand cmd2 = new SQLiteCommand("Delete from Times Where UserId='" + UserId + "'"))
-                            {
-                                cmd2.CommandType = CommandType.Text;
-                                cmd2.Connection = sqlConnection1;
-                                cmd2.ExecuteNonQuery();
-                            }
-                        }
-                    }
-                }
-
-                using (SQLiteConnection sqlConnection1 = new SQLiteConnection(connectionString))
-                {
-                    using (SQLiteCommand cmd = new SQLiteCommand("INSERT INTO Times (UserId, UserInfo, Instructions, " +
-                        " Quiz, GameStart, BeforeRate, Rate, AfterRate, EndGame, CollectedPrize) VALUES " +
-                        "(@UserId, @UserInfo, @Instructions, " +
-                        " @Quiz, @GameStart, @BeforeRate, @Rate, @AfterRate, @EndGame, @CollectedPrize)"))
-                    {
-                        cmd.CommandType = CommandType.Text;
-                        cmd.Connection = sqlConnection1;
-                        sqlConnection1.Open();
-                        cmd.Parameters.AddWithValue("@UserId", UserId);
-                        cmd.Parameters.AddWithValue("@UserInfo", null);
-                        cmd.Parameters.AddWithValue("@Instructions", null);
-                        cmd.Parameters.AddWithValue("@Quiz", null);
-                        cmd.Parameters.AddWithValue("@GameStart", null);
-                        cmd.Parameters.AddWithValue("@BeforeRate", null);
-                        cmd.Parameters.AddWithValue("@Rate", null);
-                        cmd.Parameters.AddWithValue("@AfterRate", null);
-                        cmd.Parameters.AddWithValue("@EndGame", null);
-                        cmd.Parameters.AddWithValue("@CollectedPrize", null);
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-            }
-
-            string gameStateColumn = GetGameStateColumn(gameState);
-
-            using (SQLiteConnection sqlConnection1 = new SQLiteConnection(connectionString))
-            {
-                using (SQLiteCommand cmd = new SQLiteCommand("Update Times set " + gameStateColumn + " = " + minutes + " Where UserId='" + UserId + "'"))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    cmd.Connection = sqlConnection1;
-                    sqlConnection1.Open();
-                    cmd.ExecuteNonQuery();
-                }
-            }
-
-            GameStateStopwatch.Restart();
         }
 
         public int[] GetScenariosProfits()
@@ -400,7 +286,7 @@ namespace InvestmentAdviser
                         {
                             for (int i = 0; i < Common.TotalInvestmentsTurns; i++)
                             {
-                                profits[i] = (int)result.GetInt32(i);
+                                profits[i] = result.GetInt32(i);
                             }
                         };
                     }

@@ -14,21 +14,19 @@ namespace InvestmentAdviser.Logic
 
         public bool Played { get; private set; }
 
-        public ScenarioTurn(int turnNumber)
+        public const string TurnTitlePrefix = "Turn ";
+
+        public ScenarioTurn(int turnNumber, int profit)
         {
             TurnEnum = (ScenarioTurnEnum)turnNumber;
             TurnNumber = turnNumber;
+            Profit = profit;
             Played = false;
         }
-        
-        public string GetTurnTitle()
-        {
-            return "Turn " + TurnNumber;
-        }
 
-        public void SetProfit(int profit)
+        public static string GetTurnTitle(int turnNumber)
         {
-            Profit = profit;
+            return TurnTitlePrefix + turnNumber;
         }
 
         public void SetPlayed()

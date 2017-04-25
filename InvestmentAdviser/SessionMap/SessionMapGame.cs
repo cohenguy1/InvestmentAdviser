@@ -7,22 +7,6 @@ namespace InvestmentAdviser
 {
     public partial class Game : System.Web.UI.Page
     {
-        public GameMode GameMode
-        {
-            get
-            {
-                if (Session[SessionMap.GameModeStr] == null)
-                {
-                    return GameMode.Initial;
-                }
-                else
-                {
-                    return (GameMode)Session[SessionMap.GameModeStr];
-                }
-            }
-            set { Session[SessionMap.GameModeStr] = value; }
-        }
-
         public string UserId
         {
             get { var userId = Session[SessionMap.UserIdStr] == null ? string.Empty : (string)Session[SessionMap.UserIdStr]; return userId; }
@@ -39,19 +23,6 @@ namespace InvestmentAdviser
         {
             get { return (bool)Session[SessionMap.AskForRatingStr]; }
             set { Session[SessionMap.AskForRatingStr] = value; }
-        }
-
-        public bool AlreadyPerformingMonteCarlo
-        {
-            get {
-                if (Session[SessionMap.AlreadyPerformingMonteCarloStr] == null)
-                {
-                    return false;
-                }
-
-                return (bool)Session[SessionMap.AlreadyPerformingMonteCarloStr];
-            }
-            set { Session[SessionMap.AlreadyPerformingMonteCarloStr] = value; }
         }
 
         public int CurrentTurnNumber
@@ -82,12 +53,6 @@ namespace InvestmentAdviser
         {
             get { return (int)Session[SessionMap.RandomHuristicAskPositionStr]; }
             set { Session[SessionMap.RandomHuristicAskPositionStr] = value; }
-        }
-
-        public Stopwatch InstructionsStopwatch
-        {
-            get { return (Stopwatch)Session[SessionMap.InstructionsStopwatchStr]; }
-            set { Session[SessionMap.InstructionsStopwatchStr] = value; }
         }
 
         public DbHandler dbHandler

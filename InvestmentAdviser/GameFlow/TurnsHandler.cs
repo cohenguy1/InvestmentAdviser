@@ -32,18 +32,16 @@ namespace InvestmentAdviser
         {
             ClearTableRowStyle(Common.NumOfTurnsInTable);
 
-            ScenarioTurn newTurn = GetScenarioTurn(turnNumber);
-
-            UpdateTurnCellTitle(newTurn, Common.NumOfTurnsInTable);
+            UpdateTurnCellTitle(turnNumber, Common.NumOfTurnsInTable);
 
             SetTableRowStyle(Common.NumOfTurnsInTable);
         }
 
-        private void UpdateTurnCellTitle(ScenarioTurn scenarioTurn, int turnRow)
+        private void UpdateTurnCellTitle(int turnNumber, int turnRow)
         {
             TableCell tableCell = GetTableCell(turnRow, TableColumnType.Turn);
 
-            tableCell.Text = "&nbsp;" + scenarioTurn.GetTurnTitle();
+            tableCell.Text = "&nbsp;" + ScenarioTurn.GetTurnTitle(turnNumber);
         }
 
         private void ShiftCells()
@@ -61,7 +59,7 @@ namespace InvestmentAdviser
 
                 UpdateTurnRow(scenarioTurn, currentRow);
 
-                UpdateTurnCellTitle(scenarioTurn, currentRow);
+                UpdateTurnCellTitle(scenarioTurn.TurnNumber, currentRow);
 
                 currentRow--;
             }
@@ -152,10 +150,9 @@ namespace InvestmentAdviser
             return GetScenarioTurn(CurrentTurnNumber);
         }
 
-        private string GetCurrentJobTitle()
+        private string GetJobTitle(int currentTurnNumber)
         {
-            var currentTurn = GetCurrentTurn();
-            var turnTitle = currentTurn.GetTurnTitle() + "/" + Common.TotalInvestmentsTurns;
+            var turnTitle = ScenarioTurn.GetTurnTitle(currentTurnNumber) + "/" + Common.TotalInvestmentsTurns;
             return turnTitle;
         }
 

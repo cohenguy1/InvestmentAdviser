@@ -10,14 +10,6 @@ namespace InvestmentAdviser
 {
     public partial class ProceedToGame : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!IsPostBack)
-            {
-                dbHandler.UpdateTimesTable(GameState.GameStart);
-            }
-        }
-
         protected void btnNextToGame_Click(object sender, EventArgs e)
         {
             Response.Redirect("Quiz.aspx");

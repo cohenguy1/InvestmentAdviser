@@ -16,29 +16,23 @@ namespace InvestmentAdviser
         {
             if (!IsPostBack)
             {
-                GameStopwatch.Stop();
-                
-                int totalProfit = Common.GetTotalProfit(ScenarioTurns);
+                var totalProfit = Common.GetTotalProfit(ScenarioTurns);
 
                 TotalProfitLbl.Text = "$ " + totalProfit.ToString("");
 
-                BonusLbl.Text = GetBonus().ToString("") + " cents";
-
-                dbHandler.UpdateTimesTable(GameState.EndGame);
+                BonusLbl.Text = GetBonus(totalProfit).ToString("") + " cents";
             }
         }
 
-        private int GetBonus()
+        private int GetBonus(int totalProfit)
         {
-            var cents = Common.GetTotalProfit(ScenarioTurns) / VirtualDollarsPerCent;
+            var cents = totalProfit / VirtualDollarsPerCent;
             return (int)Math.Round(cents, 0);
         }
 
         protected void rewardBtn_Click(object sender, EventArgs e)
         {
             string workerId = UserId;
-
-            dbHandler.UpdateTimesTable(GameState.CollectedPrize);
 
             string assignmentId = (string)Session["turkAss"];
 
@@ -47,9 +41,7 @@ namespace InvestmentAdviser
             data.Add("workerId", workerId);
             data.Add("hitId", (string)Session["hitId"]);
 
-            int bonusAmount = GetBonus();
-
-            SendFeedback(bonusAmount);
+            SendFeedback();
 
             rewardBtn.Enabled = false;
 
@@ -90,26 +82,27 @@ namespace InvestmentAdviser
             dbHandler.SetVectorNextAskPosition(nextAskPosition);
         }
 
-        private void SendFeedback(int bonusCents)
+        private void SendFeedback()
         {
-            String connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
+            var connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
             string feedback = feedbackTxtBox.Text;
 
-            var bonusDollars = bonusCents * centToDollar;
+            var totalProfitCents = Common.GetTotalProfit(ScenarioTurns);
+
+            var bonusDollars = totalProfitCents * centToDollar;
 
             try
             {
                 using (SQLiteConnection sqlConnection1 = new SQLiteConnection(connectionString))
                 {
-                    using (SQLiteCommand cmd = new SQLiteCommand("INSERT INTO UserFeedback (UserId, Feedback, TotalTime, TotalProfit, Bonus) " +
-                        "VALUES (@UserId, @Feedback, @TotalTime, @TotalProfit, @Bonus)"))
+                    using (SQLiteCommand cmd = new SQLiteCommand("INSERT INTO UserFeedback (UserId, Feedback, TotalProfit, Bonus) " +
+                        "VALUES (@UserId, @Feedback, @TotalProfit, @Bonus)"))
                     {
                         cmd.CommandType = CommandType.Text;
                         cmd.Connection = sqlConnection1;
                         cmd.Parameters.AddWithValue("@UserId", UserId);
                         cmd.Parameters.AddWithValue("@Feedback", feedback);
-                        cmd.Parameters.AddWithValue("@TotalTime", Math.Round(GameStopwatch.Elapsed.TotalMinutes, 1));
-                        cmd.Parameters.AddWithValue("@TotalProfit", Common.GetTotalProfit(ScenarioTurns));
+                        cmd.Parameters.AddWithValue("@TotalProfit", totalProfitCents);
                         cmd.Parameters.AddWithValue("@Bonus", bonusDollars);
                         sqlConnection1.Open();
                         cmd.ExecuteNonQuery();

@@ -131,7 +131,6 @@
       <DependentUpon>EndGame.aspx</DependentUpon>
     </Compile>
     <Compile Include="Enums\AskPositionHeuristic.cs" />
-    <Compile Include="Enums\GameState.cs" />
     <Compile Include="Enums\TableColumnType.cs" />
     <Compile Include="Game.aspx.cs">
       <DependentUpon>Game.aspx</DependentUpon>
@@ -183,9 +182,6 @@
     <Compile Include="SessionMap\SessionMapEndGame.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SessionMap\SessionMapProceedToGame.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="SessionMap\SessionMapResolutionProblem.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -202,9 +198,6 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SessionMap\SessionMapDefault.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SessionMap\SessionMapInstructions.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SessionMap\SessionMapUserInfo.cs">
@@ -226,11 +219,7 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Enums\GameMode.cs" />
     <Compile Include="GameFlow\ImageHandler.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GameFlow\Initialization.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Logic\ScenarioTurn.cs" />

@@ -12,14 +12,6 @@ namespace InvestmentAdviser
 {
     public partial class Quiz : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!IsPostBack)
-            {
-                dbHandler.UpdateTimesTable(GameState.Quiz);
-            }
-        }
-
         public const int MaxNumOfWrongQuizAnswers = 5;
 
         protected void btnNextToProceedToGame_Click(object sender, EventArgs e)

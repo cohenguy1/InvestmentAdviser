@@ -1,90 +1,48 @@
 ﻿using InvestmentAdviser.Logic;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace InvestmentAdviser
 {
-    public static class MonteCarlo
+    public class MonteCarlo
     {
-        public static int[] ChangesArray = new int[Common.NumOfChanges];
-
-        public const int NumOfVectors = 1000000;
-
-        public const double alpha = 0.45;
-
-        public static void InitializeChangeProbabilities()
+        private static Dictionary<int, double> minimalProfitToAsk = new Dictionary<int, double>()
         {
-            DbHandler dbHandler = new DbHandler();
-            var changes = dbHandler.GetChanges();
-            
-            for (int i = 0; i < Common.NumOfChanges; i++)
-            {
-                ChangesArray[i] = changes[i];
-            }
+            {1, 43.2796104045151 },
+            {2, 42.8329931636058 },
+            {3, 42.3828592515082 },
+            {4, 41.9005887479511 },
+            {5, 41.3854215545832 },
+            {6, 40.8365418155675 },
+            {7, 40.2530757585218 },
+            {8, 39.6042937578739 },
+            {9, 38.8881391384021 },
+            {10, 38.1023288602609 },
+            {11, 37.244341339512 },
+            {12, 36.3114029055107 },
+            {13, 35.2362230141439 },
+            {14, 34.011833200481 },
+            {15, 32.5966256332095 },
+            {16, 30.857946054001 },
+            {17, 28.7711637417476 },
+            {18, 26.1384016927083 },
+            {19, 22.7433333333333 },
+            {20, -30 }
+
+        };
+
+        public static bool ShouldAsk(int[] profits, int stoppingDecision)
+        {
+            var ask = profits[stoppingDecision] >= minimalProfitToAsk[stoppingDecision + 1];
+            return ask;
         }
 
-        public static bool ShouldAsk(int[] changes, int stoppingDecision, Random random)
+        public static bool ShouldAsk(int stoppingDecision, ScenarioTurn currentTurn)
         {
-            double[] exponentialSmoothing = new double[Common.TotalInvestmentsTurns];
-            double[] exponentialSmoothingAccumulated = new double[Common.TotalInvestmentsTurns];
-
-            for (var turnsIndex = 0; turnsIndex <= stoppingDecision; turnsIndex++)
-            {
-                if (turnsIndex == 0)
-                {
-                    exponentialSmoothing[turnsIndex] = changes[0];
-                }
-                else
-                {
-                    exponentialSmoothing[turnsIndex] = alpha * changes[turnsIndex] + (1 - alpha) * exponentialSmoothing[turnsIndex - 1];
-                }
-            }
-
-            for (var i = 0; i < NumOfVectors; i++)
-            {
-                for (var turnIndex = stoppingDecision + 1; turnIndex < Common.TotalInvestmentsTurns; turnIndex++)
-                {
-                    var randomChange = GetRandomChange(random);
-
-                    // determine the exponential smoothing according to the new randomized turns
-                    exponentialSmoothing[turnIndex] = alpha * randomChange + (1 - alpha) * exponentialSmoothing[turnIndex - 1];
-                    exponentialSmoothingAccumulated[turnIndex] += exponentialSmoothing[turnIndex];
-                }
-            }
-
-            // precalculated smooting (monte carlo doesn't affect this smoothing)
-            for (var turnIndex = 0; turnIndex <= stoppingDecision; turnIndex++)
-            {
-                exponentialSmoothingAccumulated[turnIndex] = exponentialSmoothing[turnIndex];
-            }
-
-            for (var turnIndex = stoppingDecision + 1; turnIndex < Common.TotalInvestmentsTurns; turnIndex++)
-            {
-                exponentialSmoothingAccumulated[turnIndex] /= NumOfVectors;
-            }
-
-            bool foundBetter = false;
-            var currentES = exponentialSmoothingAccumulated[stoppingDecision];
-            for (var turnIndex = stoppingDecision + 1; turnIndex < Common.TotalInvestmentsTurns; turnIndex++)
-            {
-                if (exponentialSmoothingAccumulated[turnIndex] > currentES)
-                {
-                    foundBetter = true;
-                }
-            }
-
-            return !foundBetter;
-        }
-
-        private static int GetRandomChange(Random random)
-        {
-            var changeIndex = random.Next(Common.NumOfChanges);
-
-            return ChangesArray[changeIndex];
+            return currentTurn.Profit >= minimalProfitToAsk[stoppingDecision + 1];
         }
     }
 }
