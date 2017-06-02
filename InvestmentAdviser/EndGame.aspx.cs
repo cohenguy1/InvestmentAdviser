@@ -89,7 +89,7 @@ namespace InvestmentAdviser
 
             var totalProfitCents = Common.GetTotalProfit(ScenarioTurns);
 
-            var bonusDollars = totalProfitCents * centToDollar;
+            var bonusDollars = GetBonus(totalProfitCents) * centToDollar;
 
             try
             {

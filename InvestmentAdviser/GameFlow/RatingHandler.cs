@@ -49,7 +49,7 @@ namespace InvestmentAdviser
 
                 for (var index = 0; index < CurrentTurnNumber; index++)
                 {
-                    if (!ScenarioTurns[index].Played)
+                    if (ScenarioTurns[index].Played)
                     {
                         profits[index] = ScenarioTurns[index].Profit;
                     } else
@@ -98,7 +98,7 @@ namespace InvestmentAdviser
 
             TimerGame.Enabled = true;
 
-            if (CurrentTurnNumber >= Common.TotalInvestmentsTurns)
+            if (CurrentTurnNumber > Common.TotalInvestmentsTurns)
             {
                 Response.Redirect("EndGame.aspx");
             }

@@ -128,8 +128,6 @@ namespace InvestmentAdviser
 
         private void FillNextPosition()
         {
-            IncreaseCurrentPosition();
-
             StartInterviewsForPosition(CurrentTurnNumber);
         }
 
@@ -192,7 +190,9 @@ namespace InvestmentAdviser
 
             CurrentTurnStatus = TurnStatus.MoveToNextTurn;
 
-            if (CurrentTurnNumber < Common.TotalInvestmentsTurns)
+            IncreaseCurrentPosition();
+
+            if (CurrentTurnNumber <= Common.TotalInvestmentsTurns)
             {
                 FillNextPosition();
             }

@@ -44,7 +44,7 @@ namespace InvestmentAdviser
                 exponentialSmoothing = Alpha * profits[i] + (1 - Alpha) * exponentialSmoothing;
             }
 
-            var ask = exponentialSmoothing <= minimalProfitForAsk[stoppingDecision + 1];
+            var ask = exponentialSmoothing >= minimalProfitForAsk[stoppingDecision + 1];
             return ask;
         }
     }
