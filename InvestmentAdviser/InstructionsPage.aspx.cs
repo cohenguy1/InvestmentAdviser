@@ -8,7 +8,7 @@ namespace InvestmentAdviser
     {
         protected void btnNextInstruction_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Quiz.aspx");
+            Response.Redirect("ProceedToGame.aspx");
         }
     }
 }

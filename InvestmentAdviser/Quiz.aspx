@@ -51,6 +51,7 @@
         </table>
     </div>
     <br />
+    <asp:Button ID="btnPrevToInstructions" runat="server" Text="Back To Instructions" OnClick="btnPrevToInstructions_Click" />
     <asp:Button ID="btnNextToProceedToGame" runat="server" Text="Next" OnClick="btnNextToProceedToGame_Click" />
 
 </asp:Content>

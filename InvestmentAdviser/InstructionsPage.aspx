@@ -16,10 +16,10 @@
 
     <button id="prevBtn" onclick="prev()" type='button' disabled="disabled">Prev</button>
     <button id="nextBtn" onclick="next()" type='button'>Next</button>
-    <asp:Button ID="continueToQuiz" Text="Continue to Quiz" style="display:none" runat="server" OnClick="btnNextInstruction_Click"/>
+    <asp:Button ID="continueToQuiz" Text="Continue" style="display:none" runat="server" OnClick="btnNextInstruction_Click"/>
     <script type="text/javascript">
         var currentInstruction = 0;
-        var lastInstruction = 1;
+        var lastInstruction = 7;
 
         function updateInstruction() {
             document.getElementById("InstructionImage").src = "Images/Instructions" + currentInstruction.toString() + ".png";

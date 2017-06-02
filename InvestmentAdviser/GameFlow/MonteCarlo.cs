@@ -9,7 +9,9 @@ namespace InvestmentAdviser
 {
     public class MonteCarlo
     {
-        private static Dictionary<int, double> minimalProfitToAsk = new Dictionary<int, double>()
+		public const double Alpha = 0.347;
+		
+        private static Dictionary<int, double> minimalProfitForAsk = new Dictionary<int, double>()
         {
             {1, 43.2796104045151 },
             {2, 42.8329931636058 },
@@ -36,13 +38,14 @@ namespace InvestmentAdviser
 
         public static bool ShouldAsk(int[] profits, int stoppingDecision)
         {
-            var ask = profits[stoppingDecision] >= minimalProfitToAsk[stoppingDecision + 1];
-            return ask;
-        }
+            double exponentialSmoothing = profits[0];
+            for (int i = 1; i <= stoppingDecision; i++)
+            {
+                exponentialSmoothing = Alpha * profits[i] + (1 - Alpha) * exponentialSmoothing;
+            }
 
-        public static bool ShouldAsk(int stoppingDecision, ScenarioTurn currentTurn)
-        {
-            return currentTurn.Profit >= minimalProfitToAsk[stoppingDecision + 1];
+            var ask = exponentialSmoothing <= minimalProfitForAsk[stoppingDecision + 1];
+            return ask;
         }
     }
 }

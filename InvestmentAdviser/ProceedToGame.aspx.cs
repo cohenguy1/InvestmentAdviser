@@ -14,6 +14,10 @@ namespace InvestmentAdviser
         {
             Response.Redirect("Quiz.aspx");
         }
-
+		
+        protected void btnPrevToInstructions_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("InstructionsPage.aspx");
+        }
     }
 }

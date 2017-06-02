@@ -34,6 +34,7 @@
     </div>
     
     <br />
+	<asp:Button ID="btnPrevToInstructions" runat="server" Text="Back To Instructions" OnClick="btnPrevToInstructions_Click" />
     <asp:Button ID="btnNextToGame" runat="server" Text="Next" OnClick="btnNextToGame_Click" />
 
 </asp:Content>

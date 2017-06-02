@@ -12,7 +12,7 @@ namespace InvestmentAdviser
 {
     public partial class Quiz : System.Web.UI.Page
     {
-        public const int MaxNumOfWrongQuizAnswers = 5;
+        public const int MaxNumOfWrongQuizAnswers = 3;
 
         protected void btnNextToProceedToGame_Click(object sender, EventArgs e)
         {
@@ -99,6 +99,11 @@ namespace InvestmentAdviser
                     cmd.ExecuteNonQuery();
                 }
             }
+        }
+
+        protected void btnPrevToInstructions_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("InstructionsPage.aspx");
         }
     }
 }

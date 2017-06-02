@@ -110,10 +110,6 @@ namespace InvestmentAdviser
             if (AskForRating)
             {
                 RateAdvisor();
-
-                AskForRating = false;
-                AlreadyAskedForRating = true;
-
                 return;
             }
             
@@ -191,6 +187,7 @@ namespace InvestmentAdviser
             if (NeedToAskRating())
             {
                 AskForRating = true;
+                AlreadyAskedForRating = true;
             }
 
             CurrentTurnStatus = TurnStatus.MoveToNextTurn;
@@ -204,9 +201,6 @@ namespace InvestmentAdviser
                 if (AskForRating)
                 {
                     RateAdvisor();
-
-                    AskForRating = false;
-                    AlreadyAskedForRating = true;
                 }
                 else
                 {

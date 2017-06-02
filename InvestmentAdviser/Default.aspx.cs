@@ -152,7 +152,7 @@ namespace InvestmentAdviser
                 Response.Redirect("BrowserProblem.aspx");
             }
 
-            Response.Redirect("ProceedToGame.aspx");
+            Response.Redirect("UserInfoPage.aspx");
         }
 
         private void InsertNewUserToDB(SQLiteConnection sqlConnection1)

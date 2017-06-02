@@ -1,15 +1,11 @@
 ﻿using InvestmentAdviser.Logic;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InvestmentAdviser
 {
     public class Optimal
     {
-        private static Dictionary<int, double> minimalProfitToAsk = new Dictionary<int, double>()
+        private static Dictionary<int, double> minimalProfitForAsk = new Dictionary<int, double>()
         {
             {1, 76.0517480409671 }, 
 			{2, 75.396144846918 }, 
@@ -36,13 +32,13 @@ namespace InvestmentAdviser
 
         public static bool ShouldAsk(int[] profits, int stoppingDecision)
         {
-            var ask = profits[stoppingDecision] >= minimalProfitToAsk[stoppingDecision + 1];
+            var ask = profits[stoppingDecision] >= minimalProfitForAsk[stoppingDecision + 1];
             return ask;
         }
 
         public static bool ShouldAsk(int stoppingDecision, ScenarioTurn currentTurn)
         {
-            return currentTurn.Profit >= minimalProfitToAsk[stoppingDecision + 1];
+            return currentTurn.Profit >= minimalProfitForAsk[stoppingDecision + 1];
         }
     }
 }

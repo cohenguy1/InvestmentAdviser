@@ -19,9 +19,6 @@ namespace InvestmentAdviser
 
             if (isFriend)
             {
-                VectorNum = 1;
-                return AskPositionHeuristic.MonteCarlo;
-
                 Random ran = new Random();
                 int randomAsk = ran.Next(5);
 

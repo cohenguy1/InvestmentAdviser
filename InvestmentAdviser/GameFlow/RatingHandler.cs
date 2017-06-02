@@ -40,12 +40,25 @@ namespace InvestmentAdviser
 
             if (AskPosition == AskPositionHeuristic.Optimal)
             {
-                return Optimal.ShouldAsk(CurrentTurnNumber, GetCurrentTurn());
+                return Optimal.ShouldAsk(CurrentTurnNumber - 1, GetCurrentTurn());
             }
             
             if (AskPosition == AskPositionHeuristic.MonteCarlo)
             {
-                return MonteCarlo.ShouldAsk(CurrentTurnNumber, GetCurrentTurn());
+                int[] profits = new int[Common.TotalInvestmentsTurns];
+
+                for (var index = 0; index < CurrentTurnNumber; index++)
+                {
+                    if (!ScenarioTurns[index].Played)
+                    {
+                        profits[index] = ScenarioTurns[index].Profit;
+                    } else
+                    {
+                        Alert.Show("Problem occured");
+                    }
+                }
+
+                return MonteCarlo.ShouldAsk(profits, CurrentTurnNumber - 1);
             }
 
             return false;
@@ -80,9 +93,12 @@ namespace InvestmentAdviser
 
             MultiView2.ActiveViewIndex = 0;
 
+            AskForRating = false;
+            AlreadyAskedForRating = true;
+
             TimerGame.Enabled = true;
 
-            if (CurrentTurnNumber == Common.TotalInvestmentsTurns)
+            if (CurrentTurnNumber >= Common.TotalInvestmentsTurns)
             {
                 Response.Redirect("EndGame.aspx");
             }
